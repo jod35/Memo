@@ -78,7 +78,7 @@ DATABASES = {
     
 }
 DATABASES['default'] = dj_database_url.config(conn_max_age=600)
-DATABASES['default'] = dj_database_url.config(default='    postgres://uwqoavlogxmdpl:91d352eeb9822c0272b767fa4c09a6799c85e4a9b2921beb8f825eff75fb61f2@ec2-34-232-24-202.compute-1.amazonaws.com:5432/d6r4urribcck5g')
+DATABASES['default'] = dj_database_url.config(default='    postgres://oqhnikcripaigb:b3515852a8242c19d42eacffe340081304b83797a6566045409065421ad9fa8b@ec2-75-101-232-85.compute-1.amazonaws.com:5432/d2rf3e53g1g7dm')
 
 
 
