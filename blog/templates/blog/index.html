@@ -3,8 +3,23 @@
 {% block title %}
     Home
 {% endblock title %}
-    
 {% block body %}
+    <div class="container">
+        <div class="left-side">
+            <h1 class="left-header">Recent Posts</h1>
+            <br>
+            {% for post in posts %}
+                <div class="post">
+                    <h2 class="post-title">{{ post.title }}</h2>
+                    <h3 class="post-author">by {{post.author}}</h3>
+                    <p>{{post.publish}}</p>
+                </div>
+            {% endfor %}
+                
+        </div>
+        <div class="side-bar">
 
+        </div>
+    </div>
 {% endblock body %}
     

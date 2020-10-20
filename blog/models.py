@@ -3,6 +3,11 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 # Create your models here.
 
+class PublishedModelManager(models.Manager):
+    def get_queryset(self):
+        return super(PublishedModelManager,self).get_queryset().filter(status='published')
+
+
 
 class Post(models.Model):
     STATUS_CHOICES=(
@@ -13,7 +18,7 @@ class Post(models.Model):
     author=models.ForeignKey(User,on_delete=models.CASCADE,related_name='blog_posts')
 
     title=models.CharField(max_length=250)
-    slug=models.SlugField(max_length=250,unique_for_date='pubish',db_index=True)
+    slug=models.SlugField(max_length=250,unique_for_date='publish',db_index=True)
     body=models.TextField()
     publish=models.DateTimeField(default=timezone.now)
     created=models.DateTimeField(auto_now_add=True)
@@ -27,4 +32,8 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    objects=models.Manager()
+
+    published=PublishedModelManager()
 

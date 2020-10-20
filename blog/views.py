@@ -2,12 +2,17 @@ from django.shortcuts import render,redirect
 from .forms import UserRegistrationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
+from .models import Post
 
 # Create your views here.
 
 #home
 def index(request):
-    return render(request,'blog/index.html')
+    posts=Post.published.all()
+    context={
+        'posts':posts
+    }
+    return render(request,'blog/index.html',context)
 
 #registration
 def register(request):

@@ -91,7 +91,27 @@ nav{
     color: brown;
     background-color: white;
 }
-
+.left-side{
+    padding: 5%;
+}
+.left-header{
+    color: brown;
+}
+.container{
+    display: flex;
+    margin-left: 50px;
+}
+.post{
+    padding: 20px;
+    box-shadow: 0 6px 6px 0 lightgray;
+}
+.post-title{
+    text-transform: capitalize;
+    color: brown;
+}
+.post-author{
+    color: brown;
+}
 footer{
     background-color: brown;
     height: 10vh;
