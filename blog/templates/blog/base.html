@@ -36,9 +36,15 @@
                 <a href="{% url 'blog:home' %}" style="color: white;">Coroblog</a>
             </div>
             <div class="nav-items">
-                <a href="{% url 'blog:home' %}">home</a>
-                <a href="{% url 'blog:signup' %}">Sign Up</a>
-                <a href="{% url 'blog:login' %}">Login</a>
+                
+                {% if user.is_authenticated %}
+                        <a href="{% url 'blog:logout' %}">Log Out</a>
+                    {% else %}
+                        <a href="{% url 'blog:home' %}">home</a>
+                        <a href="{% url 'blog:signup' %}">Sign Up</a>
+                        <a href="{% url 'blog:login' %}">Login</a>
+                {% endif %}
+                    
             </div>
         </nav>
     </section>

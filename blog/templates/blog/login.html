@@ -5,9 +5,20 @@
 {% endblock title %}
 {% block body %}
   <section id="form">
+    <div class="messages">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message">
+                    {{message}}
+                </div>
+                <br>
+            {% endfor %}
+        {% endif %}
+    </div>
     <div class="form">
         <h2>Log In</h2>
-        <form action="">
+        <form action="" method="POST">
+            {% csrf_token %}
             {% for f in form %}
             <div class="form-group">
                 {{f.label}}

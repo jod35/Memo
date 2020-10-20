@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    Log In
+{% endblock title %}
+{% block body %}
+  <section id="form">
+    <div class="form">
+        <h2>You have logged out, Thanks for your time.</h2>
+        <br>
+        <small>
+            <a href="{% url 'blog:login' %}" style="color:white; font-weight: bold;">Login Again</a>
+        </small>
+    </div>
+    
+  </section>
+{% endblock body %}

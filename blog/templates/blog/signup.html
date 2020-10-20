@@ -7,8 +7,8 @@
 <section id="form">
     <div class="form">
         <h2>Create An Account</h2>
-        <form action="">
-            
+        <form action="" method="POST">
+            {% csrf_token %}
             {% for f in form %}
                 <div class="form-group">
                     {{f.label}}
