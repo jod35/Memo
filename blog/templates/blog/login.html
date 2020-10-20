@@ -1,0 +1,26 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    Log In
+{% endblock title %}
+{% block body %}
+  <section id="form">
+    <div class="form">
+        <h2>Log In</h2>
+        <form action="">
+            {% for f in form %}
+            <div class="form-group">
+                {{f.label}}
+                {{f}}
+            </div>
+        {% endfor %}
+            <input type="submit" value="Login" class="mybtn">
+        </form>
+        <br>
+        <small>
+            Do not have an account, <a href="{% url 'blog:signup' %}" style="color:white; font-weight: bold;">Create One</a>
+        </small>
+    </div>
+    
+  </section>
+{% endblock body %}
