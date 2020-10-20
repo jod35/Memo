@@ -35,7 +35,7 @@
             <div class="logo">
                 <a href="{% url 'blog:home' %}" style="color: white;">Coroblog</a>
             </div>
-            <div class="nav-items">
+            <div class="links">
                 
                 {% if user.is_authenticated %}
                         <a href="{% url 'blog:logout' %}">Log Out</a>

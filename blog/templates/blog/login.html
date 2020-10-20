@@ -23,6 +23,15 @@
             <div class="form-group">
                 {{f.label}}
                 {{f}}
+                
+                {% if f.errors %}
+                    <small style="color: white;">
+                        <b>
+                            {{f.errors}}
+                        </b>
+                    </small>
+                {% endif %}
+                    
             </div>
         {% endfor %}
             <input type="submit" value="Login" class="mybtn">

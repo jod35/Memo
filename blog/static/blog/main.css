@@ -11,6 +11,10 @@ a{
 li{
     list-style: none;
 }
+.logo{
+    font-weight: bold;
+    font-size: 1.1rem;
+}
 nav{
     display: flex;
     justify-content: space-between;
@@ -18,7 +22,7 @@ nav{
     background-color: brown;
     color: white;
 }
-.nav-items a{
+.links a{
     color: white;
     padding: 2em;
     text-transform: uppercase;
