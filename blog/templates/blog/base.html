@@ -38,6 +38,8 @@
             <div class="links">
                 
                 {% if user.is_authenticated %}
+                        <a href="{% url 'blog:home' %}">Home</a>
+                        <a href="">Profile</a>
                         <a href="{% url 'blog:logout' %}">Log Out</a>
                     {% else %}
                         <a href="{% url 'blog:home' %}">home</a>

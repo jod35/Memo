@@ -32,3 +32,10 @@ def register(request):
     }
     return render(request,'blog/signup.html',context)
 
+
+def post_details(request,slug):
+    post=Post.objects.filter(slug=slug).first()
+    context={
+        'post':post
+    }
+    return render(request,'blog/postdetails.html',context)

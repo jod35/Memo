@@ -103,7 +103,7 @@ nav{
 }
 .post{
     padding: 20px;
-    box-shadow: 0 6px 6px 0 lightgray;
+    /* box-shadow: 0 6px 6px 0 lightgray; */
 }
 .post-title{
     text-transform: capitalize;
