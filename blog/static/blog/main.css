@@ -26,7 +26,9 @@ nav{
     color: white;
     padding: 2em;
     text-transform: uppercase;
-
+}
+body{
+    overflow-x: hidden;
 }
 .main{
     min-height: 100vh;
@@ -91,8 +93,9 @@ nav{
     color: brown;
     background-color: white;
 }
-.left-side{
+.left{
     padding: 5%;
+    width: 80%;
 }
 .left-header{
     color: brown;
@@ -101,9 +104,12 @@ nav{
     display: flex;
     margin-left: 50px;
 }
+.main{
+    padding-top: 2%;
+}
 .post{
     padding: 20px;
-    /* box-shadow: 0 6px 6px 0 lightgray; */
+    box-shadow: 0 6px 6px 0 lightgray;
 }
 .post-title{
     text-transform: capitalize;
@@ -111,6 +117,43 @@ nav{
 }
 .post-author{
     color: brown;
+}
+.post-details{
+    padding: 5% 10% 10% 5%;
+}
+.post-body{
+    padding-top: 20px;
+}
+.txt{
+    font-weight: bolder;
+}
+.side-bar{
+    width: 20%;
+    height: 60vh;
+    /* display: none; */
+    text-align: center;
+    transition: 1.8s all;
+    background-color: brown;
+}
+#close-btn{
+    display: none;
+}
+#container{
+    min-height: 100vh;
+    display: flex;
+
+}
+.side-bar a{
+    color: white;
+    display: block;
+    padding: 20px;
+    text-transform: uppercase;
+    transition: all 1.6s;
+}
+.side-bar a:hover{
+    color: white;
+    background-color: brown;
+    
 }
 footer{
     background-color: brown;
@@ -124,5 +167,8 @@ footer{
     }
     .form{
         width: 80%;
+    }
+    .side-bar{
+        width: 100%;
     }
 }

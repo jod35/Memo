@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from .forms import UserRegistrationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from .models import Post
 
 # Create your views here.
@@ -32,10 +33,18 @@ def register(request):
     }
     return render(request,'blog/signup.html',context)
 
-
+@login_required 
 def post_details(request,slug):
     post=Post.objects.filter(slug=slug).first()
     context={
         'post':post
     }
     return render(request,'blog/postdetails.html',context)
+
+@login_required
+def home_page(request):
+    posts=Post.published.all()
+    context={
+        'posts':posts
+    }
+    return render(request,'blog/home.html',context)

@@ -29,32 +29,34 @@
         {% endblock title %}  
     </title>
 </head>
-<body>
+<body onload="startTime()">
     <section class="header">
         <nav>
+            <div class="links">
+                <a href="#" id="open-btn">&#9776;</a>
+                <a href="#" id="close-btn">X</a>
+            </div>
+            <div id="txt" style="font-weight: bolder;"></div>
             <div class="logo">
                 <a href="{% url 'blog:index' %}" style="color: white;">Coroblog</a>
             </div>
-            <div class="links">
-                {% if user.is_authenticated %}
-                        <a href="#" id="open-btn">&#9776;</a>
-                        <a href="#" id="close-btn">X</a>
-                    {% else %}
-                        <a class="link" href="{% url 'blog:index' %}">home</a>
-                        <a class="link" href="{% url 'blog:signup' %}">Sign Up</a>
-                        <a class="link" href="{% url 'blog:login' %}">Login</a>
-                {% endif %}
-                    
-            </div>
         </nav>
     </section>
-    <div class="main">
-        <div class="main-content">
-            {% block body %}
-        
-            {% endblock body %}
+    <section id="container">
+        <div class="side-bar">
+            <a href="" class="side-bar-link" >home</a>
+            <a href="" class="side-bar-link">profile</a>
+            <a href="" class="side-bar-link">settings</a>
+            <a href="" class="side-bar-link">log out</a>
         </div>
-    </div>
+        <div class="left">
+            
+            {% block content %}
+                
+            {% endblock content %}
+                
+        </div>
+    </section>
     <footer  class="footer mt-auto py-3">
         <center class="text-muted">
             Coroblog &copy; <script>
@@ -62,5 +64,6 @@
             </script>
         </center>
     </footer>
+    <script src="{% static 'blog/js/main.js' %}"></script>
 </body>
 </html>
