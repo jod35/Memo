@@ -4,6 +4,8 @@ const sidebar=document.querySelector('.side-bar');
 const links=document.querySelectorAll('.side-bar-link');
 const left_container=document.querySelector('.left');
 const link=document.querySelectorAll('.link');
+const comment_section=document.querySelector('.comment-section');
+const like_button=document.querySelector('#like-btn');
 
 //clock js
 function startTime() {
@@ -47,7 +49,8 @@ close_btn.addEventListener('click',function(){
     for(let i of link){
         i.style.display="none";
     }
+});
 
-
-}
-)
+like_button.addEventListener('click',function(){
+    comment_section.style.display="block";
+});

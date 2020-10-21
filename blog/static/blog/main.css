@@ -109,7 +109,7 @@ body{
 }
 .post{
     padding: 20px;
-    box-shadow: 0 6px 6px 0 lightgray;
+    /* box-shadow: 0 6px 6px 0 lightgray; */
 }
 .post-title{
     text-transform: capitalize;
@@ -124,16 +124,33 @@ body{
 .post-body{
     padding-top: 20px;
 }
+.post-options{
+    margin-top: 20px;
+    ;
+}
+.post-options a{
+    padding: 20px;
+    color: brown
+}
+.comment-section{
+    margin-top: 20px;
+    display: none;
+}
+.comment-btn{
+    background-color: brown;
+    color: white;
+    border: none;
+    padding: 1.2em;
+}
 .txt{
     font-weight: bolder;
 }
 .side-bar{
     width: 20%;
-    height: 60vh;
-    /* display: none; */
+    height: 100vh;
     text-align: center;
     transition: 1.8s all;
-    background-color: brown;
+    background-color: rgb(124, 13, 13);
 }
 #close-btn{
     display: none;
