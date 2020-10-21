@@ -3,4 +3,30 @@
 {% block title %}
     {{post.title}}
 {% endblock title %}
+
+{% block content %}
+    <div class="details">
+        <h1 class="post-title">{{ post.title }}</h1>
+        <p>posted {{post.publish}}</p>
+        
+        <div class="body">
+            {{post.body}}
+        </div>
+        <div class="post-options">
+            <a href="" class="like">like</a>
+            <a href="#" class="comment" id="like-btn">comment</a>
+        </div>
+        <div class="comment-section">
+            <form action="" method="post">
+                {% csrf_token %}
+                <textarea name="comment" id="" cols="30" rows="5" id="comment"></textarea>
+                <br>
+                <br>
+                <input type="submit" value="Comment" class="comment-btn">
+            </form>
+        </div>
+    </div>
+
+{% endblock content %}
+    
     

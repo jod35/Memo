@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import Post
-
+from .forms import PostCreationForm
 # Create your views here.
 
 #home
@@ -48,3 +48,21 @@ def home_page(request):
         'posts':posts
     }
     return render(request,'blog/home.html',context)
+
+def create_post(request):
+    form=PostCreationForm()
+
+    context={
+        'form':form
+    }
+
+    return render(request,'createpost.html',context)
+
+def posts(request):
+    posts=Post.objects.all()
+    
+    context={
+        'posts':posts
+    }
+
+    return render(request,'blog/posts.html',context)

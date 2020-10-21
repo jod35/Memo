@@ -44,10 +44,11 @@
     </section>
     <section id="container">
         <div class="side-bar">
-            <a href="" class="side-bar-link" >home</a>
+            <a href="{% url 'blog:user_home' %}" class="side-bar-link" >home</a>
+            <a href="{% url 'blog:user_posts' %}" class="side-bar-link">Posts</a>
             <a href="" class="side-bar-link">profile</a>
             <a href="" class="side-bar-link">settings</a>
-            <a href="" class="side-bar-link">log out</a>
+            <a href="{% url 'blog:logout' %}" class="side-bar-link">log out</a>
         </div>
         <div class="left">
             
@@ -65,5 +66,6 @@
         </center>
     </footer>
     <script src="{% static 'blog/js/main.js' %}"></script>
+    <script src="{% static 'blog/js/jquery.js' %}"></script>
 </body>
 </html>
