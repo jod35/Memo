@@ -6,6 +6,19 @@
 
 {% block content %}
     <div class="posts">
+        <div class="messages">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="message">
+                        {{message}}
+                    </div>
+                    <br>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="post-options">
+            <a href="{% url 'blog:create_post' %}">Create Post</a> <a href="">My Posts</a>
+        </div>
         {% for post in posts %}
         <div class="post">
             <a href="/details/{{post.slug}}" class="post-title"><h2>{{ post.title }}</h2></a>

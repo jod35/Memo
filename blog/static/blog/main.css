@@ -172,6 +172,12 @@ body{
     background-color: brown;
     
 }
+.post-form{
+    color: brown;
+}
+.form-control{
+    width: 100%;
+}
 footer{
     background-color: brown;
     height: 10vh;
