@@ -14,11 +14,11 @@
         </div>
         <div class="post-options">
             <a href="" class="like">like</a>
-            <a href="#" class="comment" id="like-btn">comment</a>
+            <a href="#" class="comment" id="like-btn">Comment</a>
             
             {% if post.author == user %}
-                <a href="">Edit Post</a>
-                <a href="">Delete Post</a>
+                <a href="/edit_post/{{post.slug}}">Edit Post</a>
+                <a href="/delete_post/{{post.pk}}">Delete Post</a>
             {% endif %}
                 
         </div>

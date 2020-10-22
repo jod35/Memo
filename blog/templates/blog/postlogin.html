@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'blog/main.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet"> 
     <style>
         .bd-placeholder-img {
@@ -36,19 +37,25 @@
                 <a href="#" id="open-btn">&#9776;</a>
                 <a href="#" id="close-btn">X</a>
             </div>
-            <div id="txt" style="font-weight: bolder;"></div>
+            <div  style="font-weight: bolder;">
+                <span><i class="fa fa-clock"></i></span> 
+                <span id=txt></span>
+            </div>
             <div class="logo">
-                <a href="{% url 'blog:index' %}" style="color: white;">Coroblog</a>
+                <a href="{% url 'blog:user_home' %}" style="color: white;">Coroblog</a>
             </div>
         </nav>
     </section>
     <section id="container">
         <div class="side-bar">
-            <a href="{% url 'blog:user_home' %}" class="side-bar-link" >home</a>
-            <a href="{% url 'blog:user_posts' %}" class="side-bar-link">Posts</a>
-            <a href="" class="side-bar-link">profile</a>
-            <a href="" class="side-bar-link">settings</a>
-            <a href="{% url 'blog:logout' %}" class="side-bar-link">log out</a>
+            <a href="{% url 'blog:user_home' %}" class="side-bar-link" >
+                <i class="fa fa-home  fa-2x "></i> home</a>
+            <a href="{% url 'blog:user_posts' %}" class="side-bar-link">
+                <i class="fa fa-rss  fa-2x  "></i> Posts</a>
+            <a href="" class="side-bar-link">
+                <i class="fa fa-user fa-2x"></i> profile</a>
+            <a href="" class="side-bar-link"><i class="fa fa-cog fa-2x   "></i>  settings</a>
+            <a href="{% url 'blog:logout' %}" class="side-bar-link"><i class="fa fa-sign-out  fa-2x  "></i> log out</a>
         </div>
         <div class="left">
             

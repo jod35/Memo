@@ -13,5 +13,7 @@ urlpatterns = [
     path('home/',views.home_page,name='user_home'),
     path('create_post/',views.create_post,name='create_post'),
     path('posts/',views.posts,name='user_posts'),
-    path('my_posts',views.my_posts,name='my_posts'),
+    path('my_posts/',views.my_posts,name='my_posts'),
+    path('edit_post/<slug>',views.PostEditView.as_view(),name='edit_post'),
+    path('delete_post/<pk>',views.PostDeleteView.as_view(),name='delete_post'),
 ]
