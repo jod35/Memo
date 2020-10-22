@@ -52,17 +52,40 @@ def home_page(request):
 def create_post(request):
     form=PostCreationForm()
 
+    if request.method =="POST":
+        form=PostCreationForm(request.POST)
+
+        if form.is_valid():
+            obj=form.save(commit=False)
+
+            obj.author=request.user
+
+            obj.save()
+
+            messages.success(request,"Post Created Successfully")
+
+            return redirect('blog:user_posts')
+
     context={
         'form':form
     }
 
-    return render(request,'createpost.html',context)
+    return render(request,'blog/createpost.html',context)
 
 def posts(request):
-    posts=Post.objects.all()
+    posts=Post.published.all()
     
     context={
         'posts':posts
     }
 
     return render(request,'blog/posts.html',context)
+
+def my_posts(request):
+    posts=Post.objects.filter(author=request.user).all()
+
+    context={
+        'posts':posts
+    }
+
+    return render(request,'blog/myposts.html',context)

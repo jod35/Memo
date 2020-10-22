@@ -5,7 +5,7 @@
 {% endblock title %}
 
 {% block content %}
-    <div class="details">
+    <div class="post">
         <h1 class="post-title">{{ post.title }}</h1>
         <p>posted {{post.publish}}</p>
         
@@ -15,6 +15,12 @@
         <div class="post-options">
             <a href="" class="like">like</a>
             <a href="#" class="comment" id="like-btn">comment</a>
+            
+            {% if post.author == user %}
+                <a href="">Edit Post</a>
+                <a href="">Delete Post</a>
+            {% endif %}
+                
         </div>
         <div class="comment-section">
             <form action="" method="post">
@@ -23,6 +29,7 @@
                 <br>
                 <br>
                 <input type="submit" value="Comment" class="comment-btn">
+                <a href="#" class="comment-btn" id="cancel-btn">Cancel</a>
             </form>
         </div>
     </div>

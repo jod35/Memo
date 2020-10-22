@@ -17,8 +17,7 @@
             {% endif %}
         </div>
         <div class="post-options">
-            <a href="{% url 'blog:create_post' %}">Create Post</a> 
-            <a href="{% url 'blog:my_posts' %}">My Posts</a>
+            <a href="{% url 'blog:create_post' %}">Create Post</a> <a href="">My Posts</a>
         </div>
         <br>
         {% for post in posts %}
@@ -26,8 +25,14 @@
             <a href="/details/{{post.slug}}" class="post-title"><h2>{{ post.title }}</h2></a>
             <h3 class="post-author">by {{post.author}}</h3>
             <p>{{post.publish}}</p>
+
+            <div class="post-options">
+                <a href="">Edit Post</a>
+                <a href="">Delete</a>
+            </div>
         </div>
         <br>
     {% endfor %}
     </div>
 {% endblock content %}
+
