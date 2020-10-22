@@ -27,6 +27,10 @@ nav{
     padding: 2em;
     text-transform: uppercase;
 }
+::selection{
+    color: white;
+    background-color: brown;
+}
 body{
     overflow-x: hidden;
 }
@@ -94,8 +98,9 @@ body{
     background-color: white;
 }
 .left{
-    padding: 5%;
+    padding: 2%;
     width: 80%;
+    background-color: lightgray;
 }
 .left-header{
     color: brown;
@@ -109,7 +114,9 @@ body{
 }
 .post{
     padding: 20px;
-    /* box-shadow: 0 6px 6px 0 lightgray; */
+    box-shadow: 0 12px 12px 0 lightslategray;
+    border-radius: 7px;
+    background-color: white;
 }
 .post-title{
     text-transform: capitalize;

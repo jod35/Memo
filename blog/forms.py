@@ -13,6 +13,6 @@ class UserRegistrationForm(UserCreationForm):
 class PostCreationForm(forms.ModelForm):
     class Meta:
         model=Post
-        fields=['title','body']
+        fields=['title','body','status']
 
 

@@ -73,7 +73,7 @@ def create_post(request):
     return render(request,'blog/createpost.html',context)
 
 def posts(request):
-    posts=Post.objects.all()
+    posts=Post.published.all()
     
     context={
         'posts':posts
@@ -81,3 +81,11 @@ def posts(request):
 
     return render(request,'blog/posts.html',context)
 
+def my_posts(request):
+    posts=Post.objects.filter(author=request.user).all()
+
+    context={
+        'posts':posts
+    }
+
+    return render(request,'blog/myposts.html',context)
