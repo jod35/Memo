@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import Post
 from .forms import PostCreationForm
+from django.views.generic import UpdateView,DeleteView
+from django.contrib.messages.views import SuccessMessageMixin
 # Create your views here.
 
 #home
@@ -89,3 +91,18 @@ def my_posts(request):
     }
 
     return render(request,'blog/myposts.html',context)
+
+
+class PostEditView(UpdateView,SuccessMessageMixin):
+    model=Post
+    fields=['title','body']
+    template_name='blog/editpost.html'
+    success_url="/posts/"
+    success_message="Post has been Updated successfully"
+
+
+class PostDeleteView(DeleteView):
+    model=Post
+    template_name='blog/deletepost.html'
+    success_url="/my_posts/"
+    context_object_name='post'
