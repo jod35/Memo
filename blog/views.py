@@ -7,6 +7,7 @@ from .models import Post,Comment
 from .forms import PostCreationForm,CommentForm
 from django.views.generic import UpdateView,DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth import login, authenticate
 # Create your views here.
 
 #home
@@ -34,6 +35,26 @@ def register(request):
         'form':form
     }
     return render(request,'blog/signup.html',context)
+
+def login_users(request):
+    context={}
+
+    if request.method == 'POST':
+        username=request.POST['username']
+        password=request.POST['pasword']
+
+        user=authenticate(request,username=username,password=password)
+
+        if user is not None:
+
+            login(request,user)
+
+            return redirect('blog:user_home')
+        else:
+            messages.add_message(request,messages.INFO, "Invalid Login")
+
+    return render(request,'blog/login.html',context)
+
 
 @login_required
 def post_details(request,slug):
