@@ -179,7 +179,7 @@ body{
 }
 .side-bar a:hover{
     color: white;
-    background-color: var(--primary-color);
+    background-color: rgb(119, 8, 8);
     
 }
 .post-form{
