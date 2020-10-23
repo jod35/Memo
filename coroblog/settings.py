@@ -1,5 +1,7 @@
 import os
 import dj_database_url
+import django
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog'
+    'blog.apps.BlogConfig',
 ]
 
 MIDDLEWARE = [
@@ -73,7 +75,7 @@ if DEBUG:
 }
 else:
     DATABASES = {
-    
+
 }
     DATABASES['default'] = dj_database_url.config(conn_max_age=600)
     DATABASES['default'] = dj_database_url.config(default='postgres://oqhnikcripaigb:b3515852a8242c19d42eacffe340081304b83797a6566045409065421ad9fa8b@ec2-75-101-232-85.compute-1.amazonaws.com:5432/d2rf3e53g1g7dm')
@@ -123,3 +125,6 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 LOGIN_URL='/login/'
 LOGIN_REDIRECT_URL='/home/'
+
+
+django.setup()

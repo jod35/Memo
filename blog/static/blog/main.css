@@ -188,7 +188,7 @@ body{
 .post-form input[type="text"],select,textarea{
     width: 80%;
     border: 1px solid var(--primary-color);
-    padding: 20px;
+    padding: 10px;
     outline: none;
     border-radius: 7px;
 }

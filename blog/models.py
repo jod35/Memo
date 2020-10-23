@@ -4,6 +4,14 @@ from django.contrib.auth.models import User
 from django.utils.text import slugify
 # Create your models here.
 
+
+class Profile(models.Model):
+    user=models.OneToOneField(User, on_delete=models.CASCADE)
+    profile_pic=models.ImageField(upload_to='profile_pics',default='default.jpeg')
+
+    def __str__(self):
+        return f"{self.user}"
+
 class PublishedModelManager(models.Manager):
     def get_queryset(self):
         return super(PublishedModelManager,self).get_queryset().filter(status='published')
