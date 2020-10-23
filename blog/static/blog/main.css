@@ -46,7 +46,7 @@ body{
 .form{
     width: 40%;
     margin: auto;
-    padding: 5em 3em 2em 2em; 
+    padding: 5em 3em 2em 2em;
     box-shadow: 0 5px 5px lightgray;
     text-align: center;
     background-color: var(--primary-color);
@@ -180,7 +180,7 @@ body{
 .side-bar a:hover{
     color: white;
     background-color: rgb(119, 8, 8);
-    
+
 }
 .post-form{
     color: var(--primary-color);
@@ -196,6 +196,17 @@ body{
 .form-control{
     width: 100%;
 }
+.comments{
+  padding:20px;
+}
+.comment{
+  padding:20px;
+  box-shadow: 0 5px 5px lightgray;
+  border-radius: 7px;
+  border-top: 5px solid var(--primary-color);
+  width: 60%;
+}
+
 footer{
     background-color: var(--primary-color);
     height: 10vh;

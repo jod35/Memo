@@ -8,32 +8,52 @@
     <div class="post">
         <h1 class="post-title">{{ post.title }}</h1>
         <p>posted {{post.publish}}</p>
-        
+
         <div class="body">
             {{post.body}}
         </div>
         <div class="post-options">
             <a href="" class="like">like</a>
-            <a href="#" class="comment" id="like-btn">Comment</a>
-            
+            <a href="#" class="" id="like-btn">Comment</a>
+
             {% if post.author == user %}
                 <a href="/edit_post/{{post.slug}}">Edit Post</a>
                 <a href="/delete_post/{{post.pk}}">Delete Post</a>
             {% endif %}
-                
+
         </div>
         <div class="comment-section">
             <form action="" method="post">
                 {% csrf_token %}
-                <textarea name="comment" id="" cols="30" rows="5" id="comment"></textarea>
+                <div class="post-form">
+                  {% for f in form %}
+
+                      {{f}}
+                  {% endfor %}
+                </div>
                 <br>
                 <br>
                 <input type="submit" value="Comment" class="comment-btn">
                 <a href="#" class="comment-btn" id="cancel-btn">Cancel</a>
             </form>
         </div>
+        <br><br>
+
+        <div class="comments">
+          {% if comments%}
+              <h3 class="post-title">{{comments.count}} Comments</h3>
+              <br>
+          {% endif%}
+
+          {% for comment in comments%}
+            <div class="comment">
+              <h3 class="post-title">{{comment.author}}</h3> on {{comment.created}}
+              <p>{{comment.body}}</p>
+
+            </div>
+            <br><br>
+          {% endfor%}
+        </div>
     </div>
 
 {% endblock content %}
-    
-    
