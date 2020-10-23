@@ -3,8 +3,8 @@ from .forms import UserRegistrationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import Post
-from .forms import PostCreationForm
+from .models import Post,Comment
+from .forms import PostCreationForm,CommentForm
 from django.views.generic import UpdateView,DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 # Create your views here.
@@ -20,12 +20,12 @@ def index(request):
 #registration
 def register(request):
     form=UserRegistrationForm()
-    
+
     if request.method =="POST":
         form=UserRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            
+
             messages.success(request,"Account Creation Successful, Please Login")
 
             return redirect('blog:login')
@@ -35,11 +35,33 @@ def register(request):
     }
     return render(request,'blog/signup.html',context)
 
-@login_required 
+@login_required
 def post_details(request,slug):
     post=Post.objects.filter(slug=slug).first()
+    comments=Comment.objects.filter(post=post).all()
+    form=CommentForm()
+
+
+    if request.method == "POST":
+        form=CommentForm(request.POST)
+
+        if form.is_valid():
+            obj=form.save(commit=False)
+
+            obj.post=post
+
+            obj.author=request.user
+
+            obj.save()
+
+            form=CommentForm()
+    else:
+        form=CommentForm()
+
     context={
-        'post':post
+        'post':post,
+        'form':form,
+        'comments':comments
     }
     return render(request,'blog/postdetails.html',context)
 
@@ -76,7 +98,7 @@ def create_post(request):
 
 def posts(request):
     posts=Post.published.all()
-    
+
     context={
         'posts':posts
     }
