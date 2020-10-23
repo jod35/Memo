@@ -93,7 +93,7 @@ def home_page(request):
         'posts':posts
     }
     return render(request,'blog/home.html',context)
-
+@login_required
 def create_post(request):
     form=PostCreationForm()
 
@@ -117,6 +117,7 @@ def create_post(request):
 
     return render(request,'blog/createpost.html',context)
 
+@login_required
 def posts(request):
     posts=Post.published.all()
 
@@ -126,6 +127,7 @@ def posts(request):
 
     return render(request,'blog/posts.html',context)
 
+@login_required
 def my_posts(request):
     posts=Post.objects.filter(author=request.user).all()
 
@@ -135,7 +137,7 @@ def my_posts(request):
 
     return render(request,'blog/myposts.html',context)
 
-
+@login_required
 class PostEditView(UpdateView,SuccessMessageMixin):
     model=Post
     fields=['title','body']
@@ -143,7 +145,7 @@ class PostEditView(UpdateView,SuccessMessageMixin):
     success_url="/posts/"
     success_message="Post has been Updated successfully"
 
-
+@login_required
 class PostDeleteView(DeleteView):
     model=Post
     template_name='blog/deletepost.html'
