@@ -8,9 +8,15 @@
     <div class="messages">
         {% if messages %}
             {% for message in messages %}
-                <div class="message">
-                    {{message}}
-                </div>
+                {% if message.tags == "success"%}
+                    <div class="message-success">
+                        {{message}}
+                    </div>
+                {%else%}
+                    <div class="message-error">
+                        {{message}}
+                    </div>
+                {%  endif %}
                 <br>
             {% endfor %}
         {% endif %}
@@ -19,21 +25,10 @@
         <h2>Log In</h2>
         <form action="" method="POST">
             {% csrf_token %}
-            {% for f in form %}
-            <div class="form-group">
-                {{f.label}}
-                {{f}}
-                
-                {% if f.errors %}
-                    <small style="color: white;">
-                        <b>
-                            {{f.errors}}
-                        </b>
-                    </small>
-                {% endif %}
-                    
-            </div>
-        {% endfor %}
+            <label for="username">Username</label>
+            <input type="text" name="username" >
+            <label for="password">Password</label>
+            <input type="password" name="pasword" >
             <input type="submit" value="Login" class="mybtn">
         </form>
         <br>
@@ -41,6 +36,6 @@
             Do not have an account, <a href="{% url 'blog:signup' %}" style="color:white; font-weight: bold;">Create One</a>
         </small>
     </div>
-    
+
   </section>
 {% endblock body %}

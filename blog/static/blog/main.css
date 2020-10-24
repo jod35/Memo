@@ -79,13 +79,21 @@ body{
     border-radius: 5px;
     border-bottom: 1px solid var(--primary-color);
 }
-.message{
+.message-success{
     width: 60%;
     margin: auto;
     border: 1px solid green;
     background-color: rgb(132, 247, 132);
     text-align: center;
     padding: 10px;
+}
+.message-error{
+  width: 60%;
+  margin: auto;
+  border: 1px solid red;
+  background-color: pink;
+  text-align: center;
+  padding: 10px;
 }
 .mybtn{
     background:none;
@@ -191,6 +199,9 @@ body{
     padding: 10px;
     outline: none;
     border-radius: 7px;
+}
+#blah{
+    width: 200px;
 }
 
 .form-control{

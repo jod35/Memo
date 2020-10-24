@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'blog/main.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
     <style>
         .bd-placeholder-img {
           font-size: 1.125rem;
@@ -16,7 +16,7 @@
           -ms-user-select: none;
           user-select: none;
         }
-  
+
         @media (min-width: 768px) {
           .bd-placeholder-img-lg {
             font-size: 3.5rem;
@@ -26,8 +26,8 @@
     <title>
         Coroblog|
         {% block title %}
-            
-        {% endblock title %}  
+
+        {% endblock title %}
     </title>
 </head>
 <body onload="startTime()">
@@ -38,7 +38,7 @@
                 <a href="#" id="close-btn">X</a>
             </div>
             <div  style="font-weight: bolder;">
-                <span><i class="fa fa-clock"></i></span> 
+                <span><i class="fa fa-clock"></i></span>
                 <span id=txt></span>
             </div>
             <div class="logo">
@@ -58,11 +58,11 @@
             <a href="{% url 'blog:logout' %}" class="side-bar-link"><i class="fa fa-sign-out  fa-2x  "></i> log out</a>
         </div>
         <div class="left">
-            
+
             {% block content %}
-                
+
             {% endblock content %}
-                
+
         </div>
     </section>
     <footer  class="footer mt-auto py-3">

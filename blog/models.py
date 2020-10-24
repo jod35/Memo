@@ -8,6 +8,7 @@ from django.utils.text import slugify
 class Profile(models.Model):
     user=models.OneToOneField(User, on_delete=models.CASCADE)
     profile_pic=models.ImageField(upload_to='profile_pics',default='default.jpeg')
+    bio=models.TextField()
 
     def __str__(self):
         return f"{self.user}"
