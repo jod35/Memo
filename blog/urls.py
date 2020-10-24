@@ -16,4 +16,5 @@ urlpatterns = [
     path('my_posts/',views.my_posts,name='my_posts'),
     path('edit_post/<slug>',views.PostEditView.as_view(),name='edit_post'),
     path('delete_post/<pk>',views.PostDeleteView.as_view(),name='delete_post'),
+    path('create_profile/',views.create_profile,name='create_profile'),
 ]

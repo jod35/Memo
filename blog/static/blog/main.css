@@ -200,6 +200,9 @@ body{
     outline: none;
     border-radius: 7px;
 }
+#blah{
+    width: 200px;
+}
 
 .form-control{
     width: 100%;

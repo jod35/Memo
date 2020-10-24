@@ -3,8 +3,8 @@ from .forms import UserRegistrationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import Post,Comment
-from .forms import PostCreationForm,CommentForm
+from .models import Post,Comment,Profile
+from .forms import PostCreationForm,CommentForm,ProfileCreationForm
 from django.views.generic import UpdateView,DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth import login, authenticate
@@ -27,15 +27,20 @@ def register(request):
         if form.is_valid():
             form.save()
 
-            messages.success(request,"Account Creation Successful, Please Login")
+            user=authenticate(username=form.cleaned_data['username'],
+                                password=form.cleaned_data['password1'])
 
-            return redirect('blog:login')
+            print("USER HAS BEEN AUTHENTICATED!!!!")
+            login(request,user)
+
+            return redirect('blog:create_profile')
 
     context={
         'form':form
     }
     return render(request,'blog/signup.html',context)
 
+#login_users
 def login_users(request):
     context={}
 
@@ -54,6 +59,14 @@ def login_users(request):
             messages.add_message(request,messages.INFO, "Invalid Login")
 
     return render(request,'blog/login.html',context)
+
+@login_required
+def create_profile(request):
+    form=ProfileCreationForm()
+    context={
+        'form':form
+    }
+    return render(request,'blog/createprofile.html',context)
 
 
 @login_required
@@ -137,7 +150,7 @@ def my_posts(request):
 
     return render(request,'blog/myposts.html',context)
 
-@login_required
+
 class PostEditView(UpdateView,SuccessMessageMixin):
     model=Post
     fields=['title','body']
@@ -145,7 +158,7 @@ class PostEditView(UpdateView,SuccessMessageMixin):
     success_url="/posts/"
     success_message="Post has been Updated successfully"
 
-@login_required
+# @login_required
 class PostDeleteView(DeleteView):
     model=Post
     template_name='blog/deletepost.html'
