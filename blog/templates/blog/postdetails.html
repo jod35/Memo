@@ -28,16 +28,15 @@
         </div>
         <div class="comment-section">
             <form action="" method="post">
+                <h3>Write Your Comment</h3>
                 {% csrf_token %}
-
                   {% for f in form %}
-
                       {{f}}
                   {% endfor %}
                
                 <br>
                 <br>
-                <button type="submit" class="comment-btn">Comment</button>
+                <input type="submit" class="comment-btn" value="Comment">
                 <a href="#" class="comment-btn" id="cancel-btn">Cancel</a>
             </form>
         </div>
@@ -47,6 +46,8 @@
           {% if comments%}
               <h3 class="post-title">{{comments.count}} Comments</h3>
               <br>
+              {% else %}
+              <h3 class="post-title">No comments yet</h3>
           {% endif%}
 
           {% for comment in comments%}

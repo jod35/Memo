@@ -13,8 +13,8 @@
                         <div class="message-body">
                             {{message}}
                         </div>
-                        <div class="message-close">
-                            <p>X</p>
+                        <div class="">
+                            <a href="#" id="close-message" style="color: green;">X</a>
                         </div>
                     </div>
                     <br>
@@ -35,4 +35,9 @@
         <br>
     {% endfor %}
     </div>
+    <script>
+        $('#close-message').on('click',function(){
+            $('.message').slideUp();
+        })
+    </script>
 {% endblock content %}

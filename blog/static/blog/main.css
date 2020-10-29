@@ -86,7 +86,9 @@ body {
   border: 1px solid green;
   border-radius: 3px;
   display: flex;
+  justify-content: space-between;
 }
+
 .message-success {
   width: 60%;
   margin: auto;
@@ -133,7 +135,7 @@ body {
 }
 .post {
   padding: 20px;
-  box-shadow: 0 2px 2px 0 lightslategray;
+  /* box-shadow: 0 2px 2px 0 lightslategray; */
   border-radius: 7px;
   background-color: white;
 }
@@ -159,7 +161,7 @@ body {
   color: var(--primary-color);
 }
 .comment-section {
-  margin-top: 20px;
+  margin-top: 10px;
   display: none;
   padding: 20px;
 }
@@ -221,12 +223,14 @@ body {
   background-color: white;
   padding: 1.5em;
   border-radius: 7px;
-  box-shadow: 0 2px 2px 0 lightslategray;
+
 }
 
 .post-form input[type="text"],
 select,
-textarea {
+textarea ,
+button
+{
   width: 90%;
   margin-top: 10px;
   border: 1px solid lightslategray;
