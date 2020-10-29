@@ -1,4 +1,5 @@
 {%extends 'blog/postlogin.html'%}
+{% load static%}
 {% block title%}
   Create Your Profile
 {% endblock title%}
@@ -21,28 +22,31 @@
 </div>
 <div class="post-form">
     <h2>Create Your Profile</h2>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        
+
         {% for f in form %}
             {{f.label}}
+            <br>
             {{f}}
+            <br><br>
         {% endfor %}
-            
+
     </form>
 
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="{% static 'blog/js/jquery.js'%}"></script>
 <script>
        function readURL(input) {
             if (input.files && input.files[0]) {
+                
                     var reader = new FileReader();
-            
+
                     reader.onload = function(e) {
                         $('#blah').attr('src', e.target.result);
                     }
-            
+
                     reader.readAsDataURL(input.files[0]); // convert to base64 string
                     }
                     }

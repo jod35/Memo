@@ -10,7 +10,12 @@
             {% if messages %}
                 {% for message in messages %}
                     <div class="message">
-                        {{message}}
+                        <div class="message-body">
+                            {{message}}
+                        </div>
+                        <div class="message-close">
+                            <p>X</p>
+                        </div>
                     </div>
                     <br>
                 {% endfor %}

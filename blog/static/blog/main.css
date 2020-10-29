@@ -1,93 +1,101 @@
-:root{
-    --primary-color:brown;
+:root {
+  --primary-color: brown;
 }
-*{
-    padding: 0;
-    margin: 0;
-    font-family: 'Ubuntu', sans-serif;
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Ubuntu", monospace;
 }
 
-a{
-    text-decoration: none;
-    outline:none ;
+a {
+  text-decoration: none;
+  outline: none;
 }
-li{
-    list-style: none;
+li {
+  list-style: none;
 }
-.logo{
-    font-weight: bold;
-    font-size: 1.1rem;
+.logo {
+  font-weight: bold;
+  font-size: 1.1rem;
 }
-nav{
-    display: flex;
-    justify-content: space-between;
-    padding: 1.5em;
-    background-color: var(--primary-color);
-    color: white;
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5em;
+  background-color: var(--primary-color);
+  color: white;
 }
-.links a{
-    color: white;
-    padding: 2em;
-    text-transform: uppercase;
+.links a {
+  color: white;
+  padding: 2em;
+  text-transform: uppercase;
 }
-::selection{
-    color: white;
-    background-color: var(--primary-color);
+::selection {
+  color: white;
+  background-color: var(--primary-color);
 }
-body{
-    overflow-x: hidden;
+body {
+  overflow-x: hidden;
 }
-.main{
-    min-height: 100vh;
+.main {
+  min-height: 100vh;
 }
-#form{
-    padding-top: 2em;
+#form {
+  padding-top: 2em;
 }
-.form{
-    width: 40%;
-    margin: auto;
-    padding: 5em 3em 2em 2em;
-    box-shadow: 0 5px 5px lightgray;
-    text-align: center;
-    background-color: var(--primary-color);
-    color: white;
-    border-radius: 5px;
+.form {
+  width: 40%;
+  margin: auto;
+  padding: 5em 3em 2em 2em;
+  box-shadow: 0 5px 5px lightgray;
+  text-align: center;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 5px;
 }
-.form input{
-    width: 100%;
-    margin-top: 10px;
-    text-align: center;
+.form input {
+  width: 100%;
+  margin-top: 10px;
+  text-align: center;
 }
-.form input[type="text"]{
-    background-color: lightgray;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    border-bottom: 1px solid var(--primary-color);
+.form input[type="text"] {
+  background-color: lightgray;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  border-bottom: 1px solid var(--primary-color);
 }
-.form input[type="password"]{
-    background-color: lightgray;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    border-bottom: 1px solid var(--primary-color);
+.form input[type="password"] {
+  background-color: lightgray;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  border-bottom: 1px solid var(--primary-color);
 }
-.form input[type="email"]{
-    background-color: lightgray;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    border-bottom: 1px solid var(--primary-color);
+.form input[type="email"] {
+  background-color: lightgray;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  border-bottom: 1px solid var(--primary-color);
 }
-.message-success{
-    width: 60%;
-    margin: auto;
-    border: 1px solid green;
-    background-color: rgb(132, 247, 132);
-    text-align: center;
-    padding: 10px;
+.message {
+  background-color: lightgreen;
+  padding: 16px;
+  color: green;
+  border: 1px solid green;
+  border-radius: 3px;
+  display: flex;
 }
-.message-error{
+.message-success {
+  width: 60%;
+  margin: auto;
+  border: 1px solid green;
+  background-color: rgb(132, 247, 132);
+  text-align: center;
+  padding: 10px;
+}
+.message-error {
   width: 60%;
   margin: auto;
   border: 1px solid red;
@@ -95,156 +103,193 @@ body{
   text-align: center;
   padding: 10px;
 }
-.mybtn{
-    background:none;
-    border: 1px solid white;
-    color: white;
-    text-transform: uppercase;
-    border-radius: 5px;
-    padding: 0.99rem;
-    transition: all 1.2s;
+.mybtn {
+  background: none;
+  border: 1px solid white;
+  color: white;
+  text-transform: uppercase;
+  border-radius: 5px;
+  padding: 0.99rem;
+  transition: all 1.2s;
 }
-.mybtn:hover{
-    color: var(--primary-color);
-    background-color: white;
+.mybtn:hover {
+  color: var(--primary-color);
+  background-color: white;
 }
-.left{
-    padding: 2%;
-    width: 80%;
-    background-color: lightgray;
+.left {
+  padding: 2%;
+  width: 80%;
+  /* background-color: lightslategray; */
 }
-.left-header{
-    color: var(--primary-color);
+.left-header {
+  color: var(--primary-color);
 }
-.container{
-    display: flex;
-    margin-left: 50px;
+.container {
+  display: flex;
+  margin-left: 50px;
 }
-.main{
-    padding-top: 2%;
+.main {
+  padding-top: 2%;
 }
-.post{
-    padding: 20px;
-    box-shadow: 0 12px 12px 0 lightslategray;
-    border-radius: 7px;
-    background-color: white;
+.post {
+  padding: 20px;
+  box-shadow: 0 2px 2px 0 lightslategray;
+  border-radius: 7px;
+  background-color: white;
 }
-.post-title{
-    text-transform: capitalize;
-    color: var(--primary-color);
+.post-title {
+  text-transform: capitalize;
+  color: var(--primary-color);
 }
-.post-author{
-    color: var(--primary-color);
+.post-author {
+  color: var(--primary-color);
 }
-.post-details{
-    padding: 5% 10% 10% 5%;
-    font-size: 1.2rem;
+.post-details {
+  padding: 5% 10% 10% 5%;
+  font-size: 1.2rem;
 }
-.post-body{
-    padding-top: 20px;
+.post-body {
+  padding-top: 20px;
 }
-.post-options{
-    margin-top: 20px;
-    ;
+.post-options {
+  margin-top: 20px;
 }
-.post-options a{
-    padding: 20px;
-    color: var(--primary-color)
+.post-options a {
+  padding: 20px;
+  color: var(--primary-color);
 }
-.comment-section{
-    margin-top: 20px;
-    display: none;
+.comment-section {
+  margin-top: 20px;
+  display: none;
+  padding: 20px;
 }
-.comment-btn{
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 16px;
+.comment-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 5px;
+  transition: 1.2s all;
 }
-.detail-body{
-    font-size: 1.2rem;
-    padding-top: 10px;
+.comment-btn:hover {
+  background-color: white;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
 }
-.detail-top{
-    display: flex;
-    justify-content: space-between;
+.detail-body {
+  font-size: 1.2rem;
+  padding-top: 10px;
 }
-.detail-time{
-    padding-top: 5px;
-    color: lightslategray;
+.detail-top {
+  display: flex;
+  justify-content: space-between;
 }
-.txt{
-    font-weight: bolder;
+.detail-time {
+  padding-top: 5px;
+  color: lightslategray;
 }
-.side-bar{
-    width: 20%;
-    /* height: 100vh; */
-    text-align: center;
-    transition: 1.8s all;
-    background-color: rgb(158, 25, 25);
+.txt {
+  font-weight: bolder;
 }
-#close-btn{
-    display: none;
+.side-bar {
+  width: 20%;
+  /* height: 100vh; */
+  text-align: center;
+  transition: 1.8s all;
+  background-color: rgb(158, 25, 25);
 }
-#container{
-    min-height: 100vh;
-    display: flex;
+#close-btn {
+  display: none;
+}
+#container {
+  min-height: 100vh;
+  display: flex;
+}
+.side-bar a {
+  color: white;
+  display: block;
+  padding: 20px;
+  text-transform: uppercase;
+  transition: all 1.6s;
+}
+.side-bar a:hover {
+  color: white;
+  background-color: rgb(119, 8, 8);
+}
+.post-form {
+  color: var(--primary-color);
+  background-color: white;
+  padding: 1.5em;
+  border-radius: 7px;
+  box-shadow: 0 2px 2px 0 lightslategray;
+}
 
+.post-form input[type="text"],
+select,
+textarea {
+  width: 90%;
+  margin-top: 10px;
+  border: 1px solid lightslategray;
+  padding: 10px;
+  outline: none;
+  border-radius: 7px;
 }
-.side-bar a{
-    color: white;
-    display: block;
-    padding: 20px;
-    text-transform: uppercase;
-    transition: all 1.6s;
-}
-.side-bar a:hover{
-    color: white;
-    background-color: rgb(119, 8, 8);
-
-}
-.post-form{
-    color: var(--primary-color);
-}
-.post-form input[type="text"],select,textarea{
-    width: 80%;
-    border: 1px solid var(--primary-color);
-    padding: 10px;
-    outline: none;
-    border-radius: 7px;
-}
-#blah{
-    width: 200px;
+#blah {
+  width: 200px;
 }
 
-.form-control{
-    width: 100%;
+.form-control {
+  width: 100%;
 }
-.comments{
-  padding:20px;
+.form-group {
+  padding: 16px;
 }
-.comment{
-  padding:20px;
-  box-shadow: 0 5px 5px lightgray;
+.comments {
+  padding: 20px;
+}
+.comment {
+  padding: 20px;
+  box-shadow: 0 2px 2px lightgray;
   border-radius: 7px;
   border-top: 5px solid var(--primary-color);
   width: 60%;
 }
-
-footer{
-    background-color: var(--primary-color);
-    height: 10vh;
-    padding: 20px;
-    color: white;
+.comment-top {
+  display: flex;
+  justify-content: space-between;
 }
-@media(max-width:700px){
-    #form{
-        padding: 2%;
-    }
-    .form{
-        width: 80%;
-    }
-    .side-bar{
-        width: 100%;
-    }
+.comment-author {
+  color: var(--primary-color);
+}
+.comment-date {
+  font-size: 14px;
+  color: lightslategray;
+}
+.comment-body {
+  font-size: 1.2em;
+  padding-top: 20px;
+}
+.comment-options {
+  padding-top: 5px;
+}
+.comment-options a {
+  color: var(--primary-color);
+}
+
+footer {
+  background-color: var(--primary-color);
+  height: 10vh;
+  padding: 20px;
+  color: white;
+}
+@media (max-width: 700px) {
+  #form {
+    padding: 2%;
+  }
+  .form {
+    width: 80%;
+  }
+  .side-bar {
+    width: 100%;
+  }
 }

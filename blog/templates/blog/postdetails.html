@@ -1,5 +1,5 @@
 {% extends 'blog/postlogin.html' %}
-
+{% load static%}
 {% block title %}
     {{post.title}}
 {% endblock title %}
@@ -11,14 +11,14 @@
             <p class="detail-time">posted {{post.publish}}</p>
         </div>
         <h2 class="post-title">{{ post.title }}</h2>
-        
+
 
         <div class="detail-body">
             {{post.body}}
         </div>
         <div class="post-options">
-            <a href="" class="like">like</a>
-            <a href="#" class="" id="like-btn">Comment</a>
+            <a href="" class="like" id="like-btn">like</a>
+            <a href="#" class="" id="comment-btn">Comment</a>
 
             {% if post.author == user %}
                 <a href="/edit_post/{{post.slug}}">Edit Post</a>
@@ -29,12 +29,12 @@
         <div class="comment-section">
             <form action="" method="post">
                 {% csrf_token %}
-                <div class="post-form">
+
                   {% for f in form %}
 
                       {{f}}
                   {% endfor %}
-                </div>
+               
                 <br>
                 <br>
                 <button type="submit" class="comment-btn">Comment</button>
@@ -51,8 +51,24 @@
 
           {% for comment in comments%}
             <div class="comment">
-              <h3 class="post-title">{{comment.author}}</h3> on {{comment.created}}
-              <p>{{comment.body}}</p>
+              <div class="comment-top">
+                <div class="comment-author">
+                  <h3>@{{comment.author}}</h3>
+                </div>
+                <div class="comment-date">
+                  on {{comment.created}}
+                </div>
+              </div> 
+              <div class="comment-body">
+                <p>{{comment.body}}</p>
+              </div>
+              
+              {% if comment.author == request.user %}
+              <div class="comment-options">
+                  <a href="/delete_comment/{{comment.id}}/{{post.slug}}">delete</a>
+              </div>
+              {% endif %}
+                
 
             </div>
             <br><br>

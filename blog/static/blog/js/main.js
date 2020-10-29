@@ -5,8 +5,7 @@ const links=document.querySelectorAll('.side-bar-link');
 const left_container=document.querySelector('.left');
 const link=document.querySelectorAll('.link');
 const comment_section=document.querySelector('.comment-section');
-const like_button=document.querySelector('#like-btn');
-const cancel_button=document.querySelector('#cancel-btn');
+
 
 //clock js
 function startTime() {
@@ -52,13 +51,13 @@ close_btn.addEventListener('click',function(){
     }
 });
 
-like_button.addEventListener('click',function(){
-    comment_section.style.display="block";
-});
+// like_button.addEventListener('click',function(){
+//     comment_section.style.display="block";
+// });
 
-cancel_button.addEventListener('click',function(){
-    comment_section.style.display="none";
-})
+// cancel_button.addEventListener('click',function(){
+//     comment_section.style.display="none";
+// })
 
 function readURL(input) {
   if (input.files && input.files[0]) {
