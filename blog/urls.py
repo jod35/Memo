@@ -18,4 +18,6 @@ urlpatterns = [
     path('delete_post/<pk>',views.PostDeleteView.as_view(),name='delete_post'),
     path('create_profile/',views.create_profile,name='create_profile'),
     path('delete_comment/<int:id>/<slug>',views.delete_comment,name='delete_comment'),
+    path('profile/',views.user_profile,name='user_profile'),
+    path('profile/<int:id>/',views.personal_profile,name='user_profile')
 ]

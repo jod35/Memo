@@ -1,0 +1,21 @@
+{% extends 'blog/postlogin.html' %}
+
+{% block content %}
+<div class="post">
+    <div class="main-section">
+    <div class="img-section">
+        <img src="{{user_.profile.profile_pic.url}}" alt="" srcset="" width="100">
+    </div>
+        <div class="post-section">
+            <div class="detail-top">
+                    <h1 class="pr-text">@{{user_}}</h1>
+                <p class="detail-time">joined on {{user_.date_joined}}</p>
+            </div>
+            <div class="bio">
+                {{user_.profile.bio}}
+            </div>
+         </div>
+        </div>
+    </div>
+    <br><br> 
+{% endblock content %}

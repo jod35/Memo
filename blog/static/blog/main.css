@@ -121,7 +121,7 @@ body {
 .left {
   padding: 2%;
   width: 80%;
-  /* background-color: lightslategray; */
+  background-color: lightslategray;
 }
 .left-header {
   color: var(--primary-color);
@@ -134,8 +134,8 @@ body {
   padding-top: 2%;
 }
 .post {
-  padding: 20px;
-  /* box-shadow: 0 2px 2px 0 lightslategray; */
+  padding: 10px;
+  box-shadow: 0 2px 2px 0 lightslategray;
   border-radius: 7px;
   background-color: white;
 }
@@ -169,7 +169,7 @@ body {
   background-color: var(--primary-color);
   color: white;
   border: none;
-  padding: 16px;
+  padding: 10px;
   border-radius: 5px;
   transition: 1.2s all;
 }
@@ -227,6 +227,7 @@ body {
 }
 
 .post-form input[type="text"],
+input[type="file"],
 select,
 textarea ,
 button
@@ -246,16 +247,30 @@ button
   width: 100%;
 }
 .form-group {
-  padding: 16px;
+  /* padding: 16px; */
+}
+.main-section{
+  display: flex;
+  /* justify-content: space-evenly; */
+}
+.post-section{
+  margin-left: 20px;
+  width: 80%;
+}
+.pr-text{
+  color: var(--primary-color);
+}
+.white-text{
+  color: white;
 }
 .comments {
-  padding: 20px;
+  padding: 16px;
 }
 .comment {
-  padding: 20px;
-  box-shadow: 0 2px 2px lightgray;
+  padding: 16px;
+  background-color: white;
   border-radius: 7px;
-  border-top: 5px solid var(--primary-color);
+  border-top: 1px solid var(--primary-color);
   width: 60%;
 }
 .comment-top {
@@ -270,7 +285,7 @@ button
   color: lightslategray;
 }
 .comment-body {
-  font-size: 1.2em;
+  font-size: 0.98em;
   padding-top: 20px;
 }
 .comment-options {

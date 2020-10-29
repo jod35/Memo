@@ -22,22 +22,30 @@
             {% endif %}
         </div>
         <div class="post-options">
-            <a href="{% url 'blog:create_post' %}">Create Post</a> 
-            <a href="{% url 'blog:my_posts' %}">My Posts</a>
+            <a href="{% url 'blog:create_post' %}" style="color: white;">Create Post</a> 
+            <a href="{% url 'blog:my_posts' %}" style="color: white;">My Posts</a>
         </div>
         <br>
         {% for post in posts %}
-        <div class="post">
-            <a href="/details/{{post.slug}}" class="post-title"><h2>{{ post.title }}</h2></a>
-            <h3 class="post-author">by {{post.author}}</h3>
-            <p>{{post.publish}}</p>
-        </div>
-        <br>
-    {% endfor %}
+            <div class="post">
+                <div class="main-section">
+                <div class="img-section">
+                    <img src="{{post.author.profile.profile_pic.url}}" alt="" srcset="" width="100">
+                </div>
+                    <div class="post-section">
+                        <div class="detail-top">
+                            <a href="/profile/{{post.author.id}}" class="pr-text">
+                                <h1>@{{post.author}}</h1>
+                            </a>
+                            <p class="detail-time">posted on {{post.publish}}</p>
+                        </div>
+                        <a href="/details/{{post.slug}}" class="pr-text">
+                            <h2>{{post.title}}</h2>
+                        </a>
+                     </div>
+                    </div>
+                </div>
+                <br><br>
+        {% endfor %}
     </div>
-    <script>
-        $('#close-message').on('click',function(){
-            $('.message').slideUp();
-        })
-    </script>
 {% endblock content %}

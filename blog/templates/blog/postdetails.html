@@ -6,15 +6,21 @@
 
 {% block content %}
     <div class="post">
-        <div class="detail-top">
-            <h1 class="post-title">{{post.author}}</h1>
-            <p class="detail-time">posted {{post.publish}}</p>
-        </div>
-        <h2 class="post-title">{{ post.title }}</h2>
-
-
-        <div class="detail-body">
-            {{post.body}}
+       <div class="main-section">
+          <div class="img-section">
+            <img src="{{post.author.profile.profile_pic.url}}" alt="" srcset="" width="100">
+          </div>
+          <div class="post-section">
+            <div class="detail-top">
+            
+              <h1 class="post-title">{{post.author}}</h1>
+              <p class="detail-time">posted {{post.publish}}</p>
+            </div>
+            <h2 class="post-title">{{ post.title }}</h2>
+            <div class="detail-body">
+                {{post.body}}
+            </div>
+          </div>
         </div>
         <div class="post-options">
             <a href="" class="like" id="like-btn">like</a>
@@ -41,40 +47,41 @@
             </form>
         </div>
         <br><br>
+    </div>
+    <div class="comments">
+      {% if comments%}
+          <h3 class="white-text">{{comments.count}} Comments</h3>
+          <br>
+          {% else %}
+          <h3 class="post-title">No comments yet</h3>
+      {% endif%}
 
-        <div class="comments">
-          {% if comments%}
-              <h3 class="post-title">{{comments.count}} Comments</h3>
-              <br>
-              {% else %}
-              <h3 class="post-title">No comments yet</h3>
-          {% endif%}
-
-          {% for comment in comments%}
-            <div class="comment">
-              <div class="comment-top">
-                <div class="comment-author">
-                  <h3>@{{comment.author}}</h3>
-                </div>
-                <div class="comment-date">
-                  on {{comment.created}}
-                </div>
-              </div> 
-              <div class="comment-body">
-                <p>{{comment.body}}</p>
-              </div>
-              
-              {% if comment.author == request.user %}
-              <div class="comment-options">
-                  <a href="/delete_comment/{{comment.id}}/{{post.slug}}">delete</a>
-              </div>
-              {% endif %}
-                
-
+      {% for comment in comments%}
+        <div class="comment">
+          <div class="comment-top">
+            <div class="comment-author">
+              <h3>@{{comment.author}}</h3>
             </div>
-            <br><br>
-          {% endfor%}
+            <div class="comment-date">
+              on {{comment.created}}
+            </div>
+          </div> 
+          <div class="comment-body">
+            <p>{{comment.body}}</p>
+          </div>
+          
+          {% if comment.author == request.user %}
+          <div class="comment-options">
+              <a href="/delete_comment/{{comment.id}}/{{post.slug}}">delete</a>
+          </div>
+          {% endif %}
+            
+
         </div>
+       
+        <br>
+
+      {% endfor%}
     </div>
 
 {% endblock content %}

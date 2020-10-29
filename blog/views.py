@@ -8,11 +8,11 @@ from .forms import PostCreationForm, CommentForm, ProfileCreationForm
 from django.views.generic import UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth import login, authenticate
-# Create your views here.
-
-# home
 
 
+"""
+THE HOME PAGE
+"""
 def index(request):
     posts = Post.published.all()
     context = {
@@ -22,7 +22,9 @@ def index(request):
 
 # registration
 
-
+"""
+    THE SIGN UP PAGE
+"""
 def register(request):
     form = UserRegistrationForm()
 
@@ -46,7 +48,9 @@ def register(request):
 
 # login_users
 
-
+"""
+    THE LOGIN PAGE
+"""
 def login_users(request):
     context = {}
 
@@ -66,17 +70,60 @@ def login_users(request):
 
     return render(request, 'blog/login.html', context)
 
-
+"""
+CREATE PROFILE PAGE
+"""
 @login_required
 def create_profile(request):
     form = ProfileCreationForm()
+
+    if request.method == 'POST':
+        form=ProfileCreationForm(request.POST,request.FILES)
+
+        if form.is_valid():
+            obj=form.save(commit=False)
+
+            obj.user=request.user
+
+            obj.save()
+
+            messages.success(request,"Your account is now set.")
+
+            return redirect("blog:user_home")
+
     context = {
         'form': form
     }
     return render(request, 'blog/createprofile.html', context)
 
+@login_required
+def user_profile(request):
+    user_=request.user
+
+    user_profile=Profile.objects.filter(user=user_).first()
+
+    context={
+        'profile':user_profile,
+        
+    }
+
+    return render(request,'blog/profile.html',context)
 
 @login_required
+def personal_profile(request,id):
+    user_=User.objects.get(id=id)
+
+    profile=Profile.objects.filter(user=user_).first()
+
+    context={
+        'profile':profile,
+        'user_':user_
+    }
+
+    return render(request,'blog/user.html',context)
+
+
+@login_required 
 def post_details(request, slug):
     post = Post.objects.filter(slug=slug).first()
     comments = Comment.objects.filter(post=post).all()

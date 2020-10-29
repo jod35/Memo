@@ -11,6 +11,9 @@ class UserRegistrationForm(UserCreationForm):
         fields=['username','email','password1','password2']
 
 class PostCreationForm(forms.ModelForm):
+    body=forms.CharField(
+        widget=forms.Textarea(attrs=({'rows':5}))
+    )
     class Meta:
         model=Post
         fields=['title','body','status']
