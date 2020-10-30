@@ -8,7 +8,7 @@
     <div class="post">
        <div class="main-section">
           <div class="img-section">
-            <img src="{{post.author.profile.profile_pic.url}}" alt="" srcset="" width="100">
+            <img class="profile-img" src="{{post.author.profile.profile_pic.url}}" alt="" srcset="" width="100">
           </div>
           <div class="post-section">
             <div class="detail-top">
@@ -34,7 +34,7 @@
         </div>
         <div class="comment-section">
             <form action="" method="post">
-                <h3>Write Your Comment</h3>
+                <h3 class="pr-text">Write Your Comment</h3>
                 {% csrf_token %}
                   {% for f in form %}
                       {{f}}
@@ -50,7 +50,7 @@
     </div>
     <div class="comments">
       {% if comments%}
-          <h3 class="white-text">{{comments.count}} Comments</h3>
+          <h3 class="pr-text">{{comments.count}} Comments</h3>
           <br>
           {% else %}
           <h3 class="post-title">No comments yet</h3>

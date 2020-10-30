@@ -1,7 +1,7 @@
 $("document").ready(
     function(){
-        $(".close-message").on('click',function(){
-             $(".message").slideUp();
-        })
+        $("#close-message").on('click',function(){
+            $(".message").slideUp();
+       })
     }
 )

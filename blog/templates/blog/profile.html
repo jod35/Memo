@@ -1,24 +1,28 @@
-{% extends 'blog/postlogin.html' %}
 
+{% extends 'blog/postlogin.html' %}
 {% block content %}
-<div class="post">
-    <div class="main-section">
-    <div class="img-section">
-        <img src="{{user.profile.profile_pic.url}}" alt="" srcset="" width="100">
-    </div>
-        <div class="post-section">
-            <div class="detail-top">
-                <a href="{% url 'blog:user_profile' %}" class="pr-text">
-                    <h1>@{{user}}</h1>
-                </a>
-                <p class="detail-time">joined on {{user.date_joined}}</p>
-            </div>
-            <div class="bio">
-                {{user.profile.bio}}
-            </div>
-         </div>
+    <div class="profile">
+        <div class="profile-img-section">
+                <img src="{{user.profile.profile_pic.url}}" alt="" class="profile-img-lg">
         </div>
+        <div class="profile-details">
+            
+            <div class="details-top">
+    
+                <h1 class="pr-text">@{{user.username}}</h1>
+                <p>
+                    joined: {{user.date_joined}}
+                </p>
+            </div>
+           <div class="bio">
+                <p >
+                    {{user.profile.bio}}
+                </p>
+                <br>
+                <a href="" class="pr-text">Edit Your Profile</a>
+           </div>
+        </div>
+       
     </div>
-    <br><br> 
 {% endblock content %}
     

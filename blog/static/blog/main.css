@@ -1,5 +1,6 @@
 :root {
-  --primary-color: brown;
+  --primary-color:rgb(0, 78, 156);
+  --light-g:var(--light-g);
 }
 * {
   padding: 0;
@@ -47,7 +48,7 @@ body {
   width: 40%;
   margin: auto;
   padding: 5em 3em 2em 2em;
-  box-shadow: 0 5px 5px lightgray;
+  box-shadow: 0 5px 5px var(--light-g);
   text-align: center;
   background-color: var(--primary-color);
   color: white;
@@ -59,21 +60,21 @@ body {
   text-align: center;
 }
 .form input[type="text"] {
-  background-color: lightgray;
+  background-color: var(--light-g);
   padding: 10px;
   border: none;
   border-radius: 5px;
   border-bottom: 1px solid var(--primary-color);
 }
 .form input[type="password"] {
-  background-color: lightgray;
+  background-color: var(--light-g);
   padding: 10px;
   border: none;
   border-radius: 5px;
   border-bottom: 1px solid var(--primary-color);
 }
 .form input[type="email"] {
-  background-color: lightgray;
+  background-color: var(--light-g);
   padding: 10px;
   border: none;
   border-radius: 5px;
@@ -121,7 +122,7 @@ body {
 .left {
   padding: 2%;
   width: 80%;
-  background-color: lightslategray;
+  /* background-color: lightslategray; */
 }
 .left-header {
   color: var(--primary-color);
@@ -135,10 +136,11 @@ body {
 }
 .post {
   padding: 10px;
-  box-shadow: 0 2px 2px 0 lightslategray;
-  border-radius: 7px;
   background-color: white;
+  border-bottom: 1px solid var(--primary-color);
+  width: 80%;
 }
+
 .post-title {
   text-transform: capitalize;
   color: var(--primary-color);
@@ -148,7 +150,6 @@ body {
 }
 .post-details {
   padding: 5% 10% 10% 5%;
-  font-size: 1.2rem;
 }
 .post-body {
   padding-top: 20px;
@@ -179,7 +180,7 @@ body {
   color: var(--primary-color);
 }
 .detail-body {
-  font-size: 1.2rem;
+  font-size: 16px;
   padding-top: 10px;
 }
 .detail-top {
@@ -198,7 +199,7 @@ body {
   /* height: 100vh; */
   text-align: center;
   transition: 1.8s all;
-  background-color: rgb(158, 25, 25);
+  background-color: navy;
 }
 #close-btn {
   display: none;
@@ -216,7 +217,10 @@ body {
 }
 .side-bar a:hover {
   color: white;
-  background-color: rgb(119, 8, 8);
+  background-color: rgb(23, 23, 165);
+}
+.post-det-section{
+  margin-top: 10px;
 }
 .post-form {
   color: var(--primary-color);
@@ -269,8 +273,7 @@ button
 .comment {
   padding: 16px;
   background-color: white;
-  border-radius: 7px;
-  border-top: 1px solid var(--primary-color);
+  border-bottom: 1px solid var(--primary-color);
   width: 60%;
 }
 .comment-top {
@@ -297,9 +300,35 @@ button
 
 footer {
   background-color: var(--primary-color);
-  height: 10vh;
-  padding: 20px;
+  height: 5vh;
+  padding: 10px;
   color: white;
+}
+.profile{
+  min-height: 100vh;
+  padding: 2%;
+  display: flex;
+  justify-content: space-between;
+}
+.profile-img-section{
+  width: 20%;
+}
+.profile-details{
+  width:80%;
+  margin: 5%;
+}
+.bio{
+  margin-top: 20px;
+  font-size: 1.2rem;
+}
+.profile-img-sm{
+  width: 100px;
+  height: 100px;
+}
+.profile-img-lg{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
 }
 @media (max-width: 700px) {
   #form {
