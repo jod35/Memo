@@ -8,6 +8,7 @@ from .forms import PostCreationForm, CommentForm, ProfileCreationForm
 from django.views.generic import UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth import login, authenticate
+from django.views import View
 
 
 """
@@ -22,31 +23,38 @@ def index(request):
 
 # registration
 
+
+
+
 """
     THE SIGN UP PAGE
 """
-def register(request):
-    form = UserRegistrationForm()
 
-    if request.method == "POST":
-        form = UserRegistrationForm(request.POST)
+class SignUpView(View):
+    form_class=UserRegistrationForm
+    initial={'key':'value'}
+    template_name='blog/signup.html'
+
+    def get(self,request,*args,**kwargs):
+        form=self.form_class(initial=self.initial)
+        return render(request,self.template_name,{'form':form})
+
+    def post(self,request,*args,**kwargs):
+        form=UserRegistrationForm(request.POST)
+
         if form.is_valid():
             form.save()
 
-            user = authenticate(username=form.cleaned_data['username'],
-                                password=form.cleaned_data['password1'])
+            user=authenticate(username=form.cleaned_data['username'],
+                                password=form.cleaned_data['password1']
+                            )
 
-            print("USER HAS BEEN AUTHENTICATED!!!!")
-            login(request, user)
+            login(request,user)
 
             return redirect('blog:create_profile')
 
-    context = {
-        'form': form
-    }
-    return render(request, 'blog/signup.html', context)
+        return render(request,self.template_name,{'form':form})
 
-# login_users
 
 """
     THE LOGIN PAGE
@@ -102,8 +110,11 @@ def user_profile(request):
 
     user_profile=Profile.objects.filter(user=user_).first()
 
+    posts=Post.objects.filter(author=user_).all()
+
     context={
         'profile':user_profile,
+        'posts':posts
         
     }
 
@@ -115,9 +126,12 @@ def personal_profile(request,id):
 
     profile=Profile.objects.filter(user=user_).first()
 
+    posts=Post.objects.filter(author=user_).all()
+
     context={
         'profile':profile,
-        'user_':user_
+        'user_':user_,
+        'posts':posts
     }
 
     return render(request,'blog/user.html',context)
@@ -215,6 +229,7 @@ class PostEditView(UpdateView, SuccessMessageMixin):
     template_name = 'blog/editpost.html'
     success_url = "/posts/"
     success_message = "Post has been Updated successfully"
+    context_object_name='post/editpost.html'
 
 # @login_required
 
@@ -233,3 +248,11 @@ def delete_comment(request, id, slug):
     comment.delete()
 
     return redirect('/details/{}'.format(post.slug))
+
+
+
+class ProfileEditView(UpdateView):
+    model=Profile
+    template_name='blog/editprofile.html'
+    context_object_name=''
+

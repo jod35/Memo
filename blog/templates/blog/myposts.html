@@ -25,14 +25,10 @@
         
         
         {% if not posts %}
-            <h1 style="color: white;">There are no posts yet</h1>
+            <h1 class="pr-text"">There are no posts yet</h1>
             <br>
-            <a href="{% url 'blog:create_post' %}" style="color: white;">Create Post</a> 
-
-            
+            <a href="{% url 'blog:create_post' %}" class="pr-text"">Create Post</a> 
         {% endif %}
-            
-
         <br>
         {% for post in posts %}
         <div class="post">

@@ -1,87 +1,91 @@
-{% extends 'blog/postlogin.html' %}
-{% load static%}
-{% block title %}
-    {{post.title}}
-{% endblock title %}
-
-{% block content %}
-    <div class="post">
-       <div class="main-section">
-          <div class="img-section">
-            <img class="profile-img" src="{{post.author.profile.profile_pic.url}}" alt="" srcset="" width="100">
-          </div>
-          <div class="post-section">
-            <div class="detail-top">
-            
-              <h1 class="post-title">{{post.author}}</h1>
-              <p class="detail-time">posted {{post.publish}}</p>
-            </div>
-            <h2 class="post-title">{{ post.title }}</h2>
-            <div class="detail-body">
-                {{post.body}}
-            </div>
-          </div>
-        </div>
-        <div class="post-options">
-            <a href="" class="like" id="like-btn">like</a>
-            <a href="#" class="" id="comment-btn">Comment</a>
-
-            {% if post.author == user %}
-                <a href="/edit_post/{{post.slug}}">Edit Post</a>
-                <a href="/delete_post/{{post.pk}}">Delete Post</a>
-            {% endif %}
-
-        </div>
-        <div class="comment-section">
-            <form action="" method="post">
-                <h3 class="pr-text">Write Your Comment</h3>
-                {% csrf_token %}
-                  {% for f in form %}
-                      {{f}}
-                  {% endfor %}
-               
-                <br>
-                <br>
-                <input type="submit" class="comment-btn" value="Comment">
-                <a href="#" class="comment-btn" id="cancel-btn">Cancel</a>
-            </form>
-        </div>
-        <br><br>
+{% extends 'blog/postlogin.html' %} {% load static%} {% block title %}
+{{post.title}} {% endblock title %} {% block content %}
+<div class="post">
+  <div class="main-section">
+    <div class="img-section">
+      <img
+        class="profile-img"
+        src="{{post.author.profile.profile_pic.url}}"
+        alt=""
+        srcset=""
+        width="100"
+      />
     </div>
-    <div class="comments">
-      {% if comments%}
-          <h3 class="pr-text">{{comments.count}} Comments</h3>
-          <br>
-          {% else %}
-          <h3 class="post-title">No comments yet</h3>
-      {% endif%}
+    <div class="post-section">
+      <div class="detail-top">
+        <h1 class="post-title">{{post.author}}</h1>
+        <p class="detail-time">posted {{post.publish}}</p>
+      </div>
+      <h2 class="post-title">{{ post.title }}</h2>
+      <div class="detail-body">{{post.body}}</div>
+    </div>
+  </div>
+  <div class="post-options">
+    <a href="" class="like" id="like-btn">like</a>
+    <a href="#" class="" id="comment-btn">Comment</a>
 
-      {% for comment in comments%}
-        <div class="comment">
-          <div class="comment-top">
-            <div class="comment-author">
-              <h3>@{{comment.author}}</h3>
-            </div>
-            <div class="comment-date">
-              on {{comment.created}}
-            </div>
-          </div> 
-          <div class="comment-body">
-            <p>{{comment.body}}</p>
-          </div>
-          
+    {% if post.author == user %}
+    <a href="/edit_post/{{post.slug}}">Edit Post</a>
+    <a href="/delete_post/{{post.pk}}">Delete Post</a>
+    {% endif %}
+  </div>
+  <div class="comment-section">
+    <form action="" method="post">
+      <h3 class="pr-text">Write Your Comment</h3>
+      {% csrf_token %} {% for f in form %} {{f}} {% endfor %}
+
+      <br />
+      <br />
+      <input type="submit" class="comment-btn" value="Comment" />
+      <a href="#" class="comment-btn" id="cancel-btn">Cancel</a>
+    </form>
+  </div>
+  <br /><br />
+</div>
+<div class="comments">
+  {% if comments%}
+  <h3 class="pr-text">{{comments.count}} Comments</h3>
+  <br />
+  {% else %}
+  <h3 class="post-title">No comments yet</h3>
+  {% endif%} {% for comment in comments%}
+  <div class="comment">
+    <div class="main-section">
+      <div class="img-section">
+        <img
+          class="profile-img-sm"
+          src="{{comment.author.profile.profile_pic.url}}"
+          alt=""
+          srcset=""
+        />
+      </div>
+      <div class="post-section">
+        <div class="detail-top">
+          <a href="/profile/{{post.author.id}}" class="pr-text">
+            <h1>@{{post.author}}</h1>
+          </a>
+          <p class="detail-time">{{comment.created}}</p>
+        </div>
+
+        <div class="post-det-section">
+          <p>
+            {{comment.body}}
+          </p>
+        </div>
+        <div class="comment-options">
           {% if comment.author == request.user %}
-          <div class="comment-options">
-              <a href="/delete_comment/{{comment.id}}/{{post.slug}}">delete</a>
-          </div>
+            <a href="/delete_comment/{{comment.id}}/{{post.slug}}">delete</a>
           {% endif %}
-            
-
-        </div>
-       
-        <br>
-
-      {% endfor%}
+            <a href="">Like</a>
+            <a href="">Reply</a>
+      </div>
+      </div>
     </div>
+  </div>
+
+  <br />
+
+  {% endfor%}
+</div>
 
 {% endblock content %}
