@@ -26,7 +26,7 @@
             <a href="{% url 'blog:my_posts' %}" class="pr-text">My Posts</a>
         </div>
         <br>
-        {% for post in posts %}
+        {% for post in page_obj %}
             <div class="post">
                 <div class="main-section">
                 <div class="img-section">
@@ -50,5 +50,6 @@
                 </div>
                 <br><br>
         {% endfor %}
+        {% include 'blog/pagination.html' %}
     </div>
 {% endblock content %}

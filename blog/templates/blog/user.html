@@ -14,16 +14,16 @@
   </div>
 </div>
 <br>
-{% if not posts %}
+{% if not page_obj %}
     <h2 class="pr-text"">There are no posts yet</h2>
     <br>
     <a href="{% url 'blog:create_post' %}" class="pr-text""> + Create Post</a> 
 {% else %}
-    <h2 class="pr-text">{{posts.count}} Post{{posts.count|pluralize}} by @{{user_.username}}</h2>
+    <h2 class="pr-text">{{page_obj.count}} Post{{page_obj.count|pluralize}} by @{{user_.username}}</h2>
 
 {% endif %}
 
-{% for post in posts %}
+{% for post in page_obj %}
 <div class="post">
     <div class="main-section">
         <div class="img-section">
@@ -55,5 +55,5 @@
 </div>
 <br /><br />
 {% endfor %}
-
+{% include 'blog/pagination.html' %}
 {% endblock content %}

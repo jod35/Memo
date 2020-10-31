@@ -9,11 +9,14 @@ from django.views.generic import UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth import login, authenticate
 from django.views import View
+from django.core.paginator import Paginator
 
 
 """
 THE HOME PAGE
 """
+
+
 def index(request):
     posts = Post.published.all()
     context = {
@@ -24,41 +27,42 @@ def index(request):
 # registration
 
 
-
-
 """
     THE SIGN UP PAGE
 """
 
+
 class SignUpView(View):
-    form_class=UserRegistrationForm
-    initial={'key':'value'}
-    template_name='blog/signup.html'
+    form_class = UserRegistrationForm
+    initial = {'key': 'value'}
+    template_name = 'blog/signup.html'
 
-    def get(self,request,*args,**kwargs):
-        form=self.form_class(initial=self.initial)
-        return render(request,self.template_name,{'form':form})
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form': form})
 
-    def post(self,request,*args,**kwargs):
-        form=UserRegistrationForm(request.POST)
+    def post(self, request, *args, **kwargs):
+        form = UserRegistrationForm(request.POST)
 
         if form.is_valid():
             form.save()
 
-            user=authenticate(username=form.cleaned_data['username'],
+            user = authenticate(username=form.cleaned_data['username'],
                                 password=form.cleaned_data['password1']
-                            )
+                                )
 
-            login(request,user)
+            login(request, user)
 
             return redirect('blog:create_profile')
 
-        return render(request,self.template_name,{'form':form})
+        return render(request, self.template_name, {'form': form})
 
 
 """
     THE LOGIN PAGE
 """
+
+
 def login_users(request):
     context = {}
 
@@ -78,24 +82,27 @@ def login_users(request):
 
     return render(request, 'blog/login.html', context)
 
+
 """
 CREATE PROFILE PAGE
 """
+
+
 @login_required
 def create_profile(request):
     form = ProfileCreationForm()
 
     if request.method == 'POST':
-        form=ProfileCreationForm(request.POST,request.FILES)
+        form = ProfileCreationForm(request.POST, request.FILES)
 
         if form.is_valid():
-            obj=form.save(commit=False)
+            obj = form.save(commit=False)
 
-            obj.user=request.user
+            obj.user = request.user
 
             obj.save()
 
-            messages.success(request,"Your account is now set.")
+            messages.success(request, "Your account is now set.")
 
             return redirect("blog:user_home")
 
@@ -104,40 +111,48 @@ def create_profile(request):
     }
     return render(request, 'blog/createprofile.html', context)
 
+
 @login_required
 def user_profile(request):
-    user_=request.user
+    user_ = request.user
 
-    user_profile=Profile.objects.filter(user=user_).first()
+    user_profile = Profile.objects.filter(user=user_).first()
 
-    posts=Post.objects.filter(author=user_).all()
+    posts = Post.objects.filter(author=user_).all()
 
-    context={
-        'profile':user_profile,
-        'posts':posts
-        
+    context = {
+        'profile': user_profile,
+        'posts': posts
+
     }
 
-    return render(request,'blog/profile.html',context)
+    return render(request, 'blog/profile.html', context)
+
 
 @login_required
-def personal_profile(request,id):
-    user_=User.objects.get(id=id)
+def personal_profile(request, id):
+    user_ = User.objects.get(id=id)
 
-    profile=Profile.objects.filter(user=user_).first()
+    profile = Profile.objects.filter(user=user_).first()
 
-    posts=Post.objects.filter(author=user_).all()
+    posts = Post.objects.filter(author=user_).all()
 
-    context={
-        'profile':profile,
-        'user_':user_,
-        'posts':posts
+    paginator=Paginator(posts,5)
+
+    page_number=request.GET.get('page')
+
+    page_obj=paginator.get_page(page_number)
+
+    context = {
+        'profile': profile,
+        'user_': user_,
+        'page_obj': page_obj
     }
 
-    return render(request,'blog/user.html',context)
+    return render(request, 'blog/user.html', context)
 
 
-@login_required 
+@login_required
 def post_details(request, slug):
     post = Post.objects.filter(slug=slug).first()
     comments = Comment.objects.filter(post=post).all()
@@ -205,8 +220,14 @@ def create_post(request):
 def posts(request):
     posts = Post.published.all()
 
+    paginator=Paginator(posts,5)
+
+    page_number=request.GET.get('page')
+
+    page_obj=paginator.get_page(page_number)
+
     context = {
-        'posts': posts
+        'page_obj': page_obj
     }
 
     return render(request, 'blog/posts.html', context)
@@ -225,11 +246,11 @@ def my_posts(request):
 
 class PostEditView(UpdateView, SuccessMessageMixin):
     model = Post
-    fields = ['title', 'body']
+    fields = ['title', 'body','status']
     template_name = 'blog/editpost.html'
     success_url = "/posts/"
     success_message = "Post has been Updated successfully"
-    context_object_name='post/editpost.html'
+    context_object_name = 'post/editpost.html'
 
 # @login_required
 
@@ -239,6 +260,7 @@ class PostDeleteView(DeleteView):
     template_name = 'blog/deletepost.html'
     success_url = "/my_posts/"
     context_object_name = 'post'
+
 
 @login_required
 def delete_comment(request, id, slug):
@@ -250,9 +272,7 @@ def delete_comment(request, id, slug):
     return redirect('/details/{}'.format(post.slug))
 
 
-
 class ProfileEditView(UpdateView):
-    model=Profile
-    template_name='blog/editprofile.html'
-    context_object_name=''
-
+    model = Profile
+    template_name = 'blog/editprofile.html'
+    context_object_name = ''
