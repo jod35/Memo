@@ -68,17 +68,15 @@
         </div>
 
         <div class="post-det-section">
-          <p>
-            {{comment.body}}
-          </p>
+          <p>{{comment.body}}</p>
         </div>
         <div class="comment-options">
           {% if comment.author == request.user %}
-            <a href="/delete_comment/{{comment.id}}/{{post.slug}}">delete</a>
+          <a href="/delete_comment/{{comment.id}}/{{post.slug}}">delete</a>
           {% endif %}
-            <a href="">Like</a>
-            <a href="">Reply</a>
-      </div>
+          <a href="">Like</a>
+          <a href="">Reply</a>
+        </div>
       </div>
     </div>
   </div>

@@ -1,6 +1,66 @@
-{% extends 'blog/postlogin.html' %}
+{%extends 'blog/postlogin.html'%}
+{% load static%}
+{% block title%}
+  Create Your Profile
+{% endblock title%}
+{% block content%}
+<div class="messages">
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == "success"%}
+                <div class="message-success">
+                    {{message}}
+                </div>
+            {%else%}
+                <div class="message-error">
+                    {{message}}
+                </div>
+            {%  endif %}
+            <br>
+        {% endfor %}
+    {% endif %}
+</div>
+<div class="post-form">
+    <h2>Create Your Profile</h2>
+    <form action="" method="post" enctype="multipart/form-data">
+        <img src="{{ profile.profile_pic.url }}" alt="" class="profile-img-lg">
+        <br>
+        <br>
+        {% csrf_token %}
 
-{% block title %}
-    Edit Your Profile
-{% endblock title %}
-    
+        {% for f in form %}
+            {{f.label}}
+            <br>
+            {{f}}
+            <br><br>
+        {% endfor %}
+        <input type="submit" value="Save" class="comment-btn">
+    </form>
+
+
+
+<script src="{% static 'blog/js/jquery.js'%}"></script>
+
+<script>
+       function readURL(input) {
+            if (input.files && input.files[0]) {
+                
+                    var reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        $('.profile-img-lg').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]); // convert to base64 string
+                    }
+                    }
+
+                    $("#id_profile_pic").change(function() {
+                    readURL(this);
+                    });
+</script>
+
+
+
+
+{% endblock content%}

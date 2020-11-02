@@ -1,26 +1,18 @@
-{% extends 'blog/postlogin.html' %}
-{% block title %}
-    Edit "{{post.title}}"
-{% endblock title %}
-{% block content %}
+{% extends 'blog/postlogin.html' %} {% block title %} Edit "{{post.title}}" {%
+endblock title %} {% block content %}
 <div class="post-form">
-    <h2>Update Post</h2>
-    <form action="" method="post">
-        {% csrf_token %}
-        
-        {% for f in form %}
-            <div class="form-group">
-                <p>{{ f.label }}</p>
-                <br>
-                <p class="form-control">{{f}}</p>
-            </div>
-        {% endfor %}
-            <br>
-        <input type="submit" value="Save" class="comment-btn">
-        <a href="{% url 'blog:user_posts' %}" class="comment-btn">Back</a>
-    </form>
-
+  <h2>Update Post</h2>
+  <form action="" method="post">
+    {% csrf_token %} {% for f in form %}
+    <div class="form-group">
+      <p>{{ f.label }}</p>
+      <br />
+      <p class="form-control">{{f}}</p>
+    </div>
+    {% endfor %}
+    <br />
+    <input type="submit" value="Save" class="comment-btn" />
+    <a href="{% url 'blog:user_posts' %}" class="comment-btn">Back</a>
+  </form>
 </div>
 {% endblock content %}
-    
-    

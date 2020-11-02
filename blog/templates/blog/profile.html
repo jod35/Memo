@@ -11,41 +11,57 @@
     <div class="bio">
       <p>{{user.profile.bio}}</p>
       <br />
-      <a href="" class="pr-text">Edit Your Profile</a>
+      <a href="/edit_profile/profile{{profile.pk}}" class="pr-text"
+        >Edit Your Profile</a
+      >
     </div>
   </div>
 </div>
 {% if not page_obj %}
-    <h1 class="pr-text"">There are no posts yet</h1>
-    <br>
-    <a href="{% url 'blog:create_post' %}" class="pr-text""> + Create Post</a> 
+<h1 class="pr-text">There are no posts yet</h1>
+<br />
+<a href="{% url 'blog:create_post' %}" class="pr-text"> + Create Post</a>
 
+{% endif %} {% for post in page_obj %}
+<div class="post">
+  <div class="main-section">
+    <div class="img-section">
+      <img
+        class="profile-img-sm"
+        src="{{post.author.profile.profile_pic.url}}"
+        alt=""
+        srcset=""
+      />
+    </div>
+    <div class="post-section">
+      <div class="detail-top">
+        <a href="/profile/{{post.author.id}}" class="pr-text">
+          <h1>@{{post.author}}</h1>
+        </a>
+        <p class="detail-time">posted on {{post.publish}}</p>
+      </div>
 
-{% endif %}
-{% for post in page_obj %}
-            <div class="post">
-                <div class="main-section">
-                <div class="img-section">
-                    <img class="profile-img-sm" src="{{post.author.profile.profile_pic.url}}" alt="" srcset="">
-                </div>
-                    <div class="post-section">
-                        <div class="detail-top">
-                            <a href="/profile/{{post.author.id}}" class="pr-text">
-                                <h1>@{{post.author}}</h1>
-                            </a>
-                            <p class="detail-time">posted on {{post.publish}}</p>
-                        </div>
-                        
-                        <div class="post-det-section">
-                            <p>{{post.body|truncatewords:5|linebreaks}} <a href="/details/{{post.slug}}" class="pr-text"><span>
-                                Read More
-                            </span></a></p>
-                        </div>
-                     </div>
-                    </div>
-                </div>
-                <br><br>
-        {% endfor %}
-        {% include 'blog/pagination.html' %}
+      <div class="post-det-section">
+        <p>
+          {{post.body|truncatewords:20|linebreaks}}
+          <a href="/details/{{post.slug}}" class="pr-text"
+            ><span> Read More </span></a
+          >
+        </p>
+      </div>
+      <div class="post-options">
+        <a href="" class="like" id="like-btn">like</a>
+        <a href="/details/{{post.slug}}/" class="" id="comment-btn"
+          >{{post.post.count}} Comment{{post.post.count|pluralize}}</a
+        >
 
-{% endblock content %}
+        {% if post.author == user %}
+        <a href="/edit_post/{{post.slug}}">Edit Post</a>
+        <a href="/delete_post/{{post.pk}}">Delete Post</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<br /><br />
+{% endfor %} {% include 'blog/pagination.html' %} {% endblock content %}
