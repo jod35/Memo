@@ -55,8 +55,8 @@ body {
   width: 70%;
   margin: auto;
   margin-top: 20px;
-  text-align: center;
   width: 95%;
+  text-align: center;
 }
 .form input[type="text"] {
   padding: 10px;
@@ -123,8 +123,8 @@ body {
   color: var(--primary-color);
 }
 .container {
-  display: flex;
-  margin-left: 50px;
+  width: 80%;
+  margin: auto;
 }
 .main {
   padding-top: 2%;

@@ -51,13 +51,6 @@ close_btn.addEventListener('click',function(){
     }
 });
 
-// like_button.addEventListener('click',function(){
-//     comment_section.style.display="block";
-// });
-
-// cancel_button.addEventListener('click',function(){
-//     comment_section.style.display="none";
-// })
 
 function readURL(input) {
   if (input.files && input.files[0]) {

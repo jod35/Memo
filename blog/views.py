@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import Post, Comment, Profile
 from .forms import PostCreationForm, CommentForm, ProfileCreationForm
-from django.views.generic import UpdateView, DeleteView
+from django.views.generic import UpdateView, DeleteView,ListView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth import login, authenticate
 from django.views import View
@@ -16,15 +16,11 @@ from django.core.paginator import Paginator
 THE HOME PAGE
 """
 
-
-def index(request):
-    posts = Post.published.all()
-    context = {
-        'posts': posts
-    }
-    return render(request, 'blog/index.html', context)
-
-# registration
+class IndexPageview(ListView):
+    template_name='blog/index.html'
+    model=Post
+    queryset=Post.objects.all()
+    paginate_by=5
 
 
 """
@@ -112,55 +108,76 @@ def create_profile(request):
     return render(request, 'blog/createprofile.html', context)
 
 
-@login_required
-def user_profile(request):
-    user_ = request.user
+class CurrentUserProfile(View):
+    template_name='blog/profile.html'
 
-    user_profile = Profile.objects.filter(user=user_).first()
+    def get(self,request,*args,**kwargs):
+        user_profile=Profile.objects.filter(user=request.user).first()
+        posts=Post.objects.filter(author=request.user).all()
 
-    posts = Post.objects.filter(author=user_).all()
+        paginator=Paginator(posts,5)
 
-    context = {
-        'profile': user_profile,
-        'posts': posts
+        page_number=request.GET.get('page')
 
-    }
+        page_obj=paginator.get_page(page_number)
 
-    return render(request, 'blog/profile.html', context)
-
-
-@login_required
-def personal_profile(request, id):
-    user_ = User.objects.get(id=id)
-
-    profile = Profile.objects.filter(user=user_).first()
-
-    posts = Post.objects.filter(author=user_).all()
-
-    paginator=Paginator(posts,5)
-
-    page_number=request.GET.get('page')
-
-    page_obj=paginator.get_page(page_number)
-
-    context = {
-        'profile': profile,
-        'user_': user_,
-        'page_obj': page_obj
-    }
-
-    return render(request, 'blog/user.html', context)
+        return render(request,self.template_name,({'profile':user_profile,
+            'page_obj':page_obj
+        }))
 
 
-@login_required
-def post_details(request, slug):
-    post = Post.objects.filter(slug=slug).first()
-    comments = Comment.objects.filter(post=post).all()
-    form = CommentForm()
 
-    if request.method == "POST":
-        form = CommentForm(request.POST)
+class PersonalProfileView(View):
+    template_name='blog/user.html'
 
+    def get(self,request,id,*args,**kwargs):
+        user_ = User.objects.get(id=id)
+
+        profile = Profile.objects.filter(user=user_).first()
+
+        posts = Post.objects.filter(author=user_).all()
+
+        paginator=Paginator(posts,5)
+
+        page_number=request.GET.get('page')
+
+        page_obj=paginator.get_page(page_number)
+
+        context = {
+            'profile': profile,
+            'user_': user_,
+            'page_obj': page_obj
+        }
+
+        return render(request, 'blog/user.html', context)
+
+
+
+
+class PostDetailView(View):
+    
+    form_class=CommentForm
+    initial={'key':'value'}
+    template_name='blog/postdetails.html'
+
+    def get(self,request,slug,*args,**kwargs):
+        post = Post.objects.filter(slug=slug).first()
+        comments = Comment.objects.filter(post=post).all()
+        form=self.form_class(initial=self.initial)
+
+        context={
+            'comments':comments,
+            'form':form,
+            'post':post
+        }
+
+        return render(request,self.template_name,context)
+
+    def post(self,request,slug,*args,**kwargs):
+        form=self.form_class(request.POST)
+        post = Post.objects.filter(slug=slug).first()
+
+        comments = Comment.objects.filter(post=post).all()
         if form.is_valid():
             obj = form.save(commit=False)
 
@@ -170,50 +187,52 @@ def post_details(request, slug):
 
             obj.save()
 
-            form = CommentForm()
-    else:
-        form = CommentForm()
+        context={'post':post,'form':form,'comments':comments}
 
-    context = {
-        'post': post,
-        'form': form,
-        'comments': comments
-    }
-    return render(request, 'blog/postdetails.html', context)
+        return render(request,self.template_name,context)
 
 
-@login_required
-def home_page(request):
-    posts = Post.published.all()
-    context = {
-        'posts': posts
-    }
-    return render(request, 'blog/home.html', context)
+class HomePageView(View):
+    template_name='blog/home.html'
+    query_set=Post.published.all()
 
+    def get(self,request,*args,**kwargs):
+        paginator=Paginator(self.query_set,5)
 
-@login_required
-def create_post(request):
-    form = PostCreationForm()
+        page_number=request.GET.get('page')
 
-    if request.method == "POST":
-        form = PostCreationForm(request.POST)
+        page_obj=paginator.get_page(page_number)
+
+        return render(request,self.template_name,{'page_obj':page_obj})
+        
+    
+
+class CreatePostView(View):
+    template_name='blog/createpost.html'
+    form_class=PostCreationForm
+    initial={'key':'value'}
+
+    def get(self,request,*args,**kwargs):
+        form=self.form_class(initial=self.initial)
+
+        return render(request,self.template_name,{'form':form})
+
+    def post(self,request,*args,**kwargs):
+        form=self.form_class(request.POST)
 
         if form.is_valid():
-            obj = form.save(commit=False)
-
-            obj.author = request.user
+            obj=form.save(commit=False)
+            obj.author=request.user
 
             obj.save()
 
-            messages.success(request, "Post Created Successfully")
+            messages.success(request,"Post Created Successfully")
 
             return redirect('blog:user_posts')
 
-    context = {
-        'form': form
-    }
+        return render(request,self.template_name,{'form':form})
 
-    return render(request, 'blog/createpost.html', context)
+            
 
 
 @login_required
@@ -233,15 +252,20 @@ def posts(request):
     return render(request, 'blog/posts.html', context)
 
 
-@login_required
-def my_posts(request):
-    posts = Post.objects.filter(author=request.user).all()
+class MyPostView(View):
+    template_name='blog/myposts.html'
+    def get(self,request,*args,**kwargs):
+        posts=Post.objects.filter(author=request.user).all()
 
-    context = {
-        'posts': posts
-    }
+        paginator=Paginator(posts,5)
 
-    return render(request, 'blog/myposts.html', context)
+        page_number=request.GET.get('page')
+
+        page_obj=paginator.get_page(page_number)
+
+        return render(request,self.template_name,{'page_obj':page_obj})
+    
+
 
 
 class PostEditView(UpdateView, SuccessMessageMixin):
