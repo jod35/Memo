@@ -65,3 +65,6 @@ function readURL(input) {
 }
 
 
+document.querySelector('#close-message').onclick=function(){
+  document.querySelector('.messages').style.display="none";
+}

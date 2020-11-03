@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from .forms import UserRegistrationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import Post, Comment, Profile
+from .models import Post, Comment, Profile,Follower
 from .forms import PostCreationForm, CommentForm, ProfileCreationForm
 from django.views.generic import UpdateView, DeleteView, ListView
 from django.contrib.messages.views import SuccessMessageMixin
@@ -138,6 +138,7 @@ class CurrentUserProfile(View):
                                                      }))
 
 
+
 """
 PROFILE VIEW FOR OTHER USERS
 """
@@ -166,6 +167,14 @@ class PersonalProfileView(View):
         }
 
         return render(request, 'blog/user.html', context)
+
+
+        def post(self,request,id,*args,**kwargs):
+
+            user=get_object_or_404(User,id=id)
+
+            # new_follower=Follower(user=)
+
 
 
 """

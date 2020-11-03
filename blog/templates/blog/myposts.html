@@ -1,9 +1,7 @@
-{% extends 'blog/postlogin.html' %} {% block title %} News Feeds {% endblock
-title %} {% block content %}
+{% extends 'blog/postlogin.html' %} {% block title %} News Feeds {% endblock title %} {% block content %}
 <div class="posts">
   <div class="messages">
-    {% if messages %} {% for message in messages %} {% if message.tags ==
-    'success' %}
+    {% if messages %} {% for message in messages %} {% if message.tags == 'success' %}
     <div class="message-success">{{message}}</div>
     {% else %}
     <div class="message-error">{{message}}</div>
@@ -32,7 +30,7 @@ title %} {% block content %}
       <div class="post-section">
         <div class="detail-top">
           <a href="/profile/{{post.author.id}}" class="pr-text">
-            <h1>@{{post.author}}</h1>
+            <h1>{{post.author}}</h1>
           </a>
           <p class="detail-time">posted on {{post.publish}}</p>
         </div>

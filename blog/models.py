@@ -67,3 +67,7 @@ class Comment(models.Model):
         return f"{self.body} by {self.author}"
 
     ordering = ('created',)
+
+
+class Follower(models.Model):
+    user=models.ManyToManyField(User)

@@ -117,10 +117,13 @@ body {
 .left {
   padding: 2%;
   width: 80%;
-  /* background-color: lightslategray; */
+  background-color: lightgray;
 }
 .left-header {
   color: var(--primary-color);
+}
+.txt-black{
+  color: black;
 }
 .container {
   width: 80%;
@@ -132,7 +135,8 @@ body {
 .post {
   padding: 10px;
   background-color: white;
-  border-bottom: 1px solid var(--primary-color);
+  border-radius: 7px;
+  box-shadow: 0 2px 2px 0 lightslategray;
   width: 80%;
 }
 
@@ -320,6 +324,9 @@ footer {
   border-radius: 50%;
 }
 @media (max-width: 700px) {
+  html{
+    font-size: 12px;
+  }
   #form {
     padding: 2%;
   }
@@ -327,6 +334,6 @@ footer {
     width: 80%;
   }
   .side-bar {
-    width: 100%;
+    width:20%;
   }
 }

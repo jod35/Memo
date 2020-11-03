@@ -15,6 +15,11 @@
     <div class="bio">
       <p>{{user_.profile.bio}}</p>
     </div>
+    <br>
+    <form action="" method="post">
+      {% csrf_token %}
+      <input type="submit" value="Follow" class="comment-btn">
+    </form>
   </div>
 </div>
 <br />
