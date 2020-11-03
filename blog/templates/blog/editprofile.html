@@ -23,6 +23,9 @@
 <div class="post-form">
     <h2>Create Your Profile</h2>
     <form action="" method="post" enctype="multipart/form-data">
+        <img src="{{ profile.profile_pic.url }}" alt="" class="profile-img-lg">
+        <br>
+        <br>
         {% csrf_token %}
 
         {% for f in form %}
@@ -37,6 +40,7 @@
 
 
 <script src="{% static 'blog/js/jquery.js'%}"></script>
+
 <script>
        function readURL(input) {
             if (input.files && input.files[0]) {
@@ -44,14 +48,14 @@
                     var reader = new FileReader();
 
                     reader.onload = function(e) {
-                        $('#blah').attr('src', e.target.result);
+                        $('.profile-img-lg').attr('src', e.target.result);
                     }
 
                     reader.readAsDataURL(input.files[0]); // convert to base64 string
                     }
                     }
 
-                    $("#imgInp").change(function() {
+                    $("#id_profile_pic").change(function() {
                     readURL(this);
                     });
 </script>

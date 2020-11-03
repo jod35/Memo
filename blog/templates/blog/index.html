@@ -1,25 +1,40 @@
-{% extends 'blog/base.html' %}
-
-{% block title %}
-    Home
-{% endblock title %}
-{% block body %}
-    <div class="container">
-        <div class="left-side">
-            <h1 class="left-header">Recent Posts</h1>
-            <br>
-            {% for post in posts %}
-                <div class="post">
-                    <a href="/details/{{post.slug}}" class="post-title"><h2>&diams;{{ post.title }}</h2></a>
-                    <h3 class="post-author">by {{post.author}}</h3>
-                    <p>{{post.publish}}</p>
-                </div>
-                <br>
-            {% endfor %}
-            
-                
+{% extends 'blog/base.html' %} {% block title %} Home {% endblock title %} {%block body %}
+<div class="container">
+  <div class="left-side">
+    <h1 class="left-header">Recent Posts</h1>
+    <br />
+    {% for post in page_obj %}
+    <div class="post">
+      <div class="main-section">
+        <div class="img-section">
+          <img
+            class="profile-img-sm"
+            src="{{post.author.profile.profile_pic.url}}"
+            alt=""
+            srcset=""
+          />
         </div>
+        <div class="post-section">
+          <div class="detail-top">
+            <a href="/profile/{{post.author.id}}" class="pr-text">
+              <h1>@{{post.author}}</h1>
+            </a>
+            <p class="detail-time">posted on {{post.publish}}</p>
+          </div>
 
+          <div class="post-det-section">
+            <p>
+              {{post.body|truncatewords:20|linebreaks}}
+              <a href="/details/{{post.slug}}" class="pr-text"
+                ><span> Read More </span></a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
+    <br /><br />
+    {% endfor %} {% include 'blog/pagination.html' %}
+  </div>
+</div>
 {% endblock body %}
-    

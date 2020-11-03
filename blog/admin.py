@@ -4,8 +4,8 @@ from .models import Post,Profile
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display=['title','author','created','publish',]
-    prepopulated_fields={'slug':('title',)}
+    list_display=['author','body','created','publish',]
+    prepopulated_fields={'slug':('body',)}
     list_filter=['created','publish',]
 
 

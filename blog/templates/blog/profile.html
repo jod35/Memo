@@ -1,0 +1,68 @@
+{% extends 'blog/postlogin.html' %} {% block content %}
+<div class="profile post-form">
+  <div class="profile-img-section">
+    <img src="{{user.profile.profile_pic.url}}" alt="" class="profile-img-lg" />
+  </div>
+  <div class="profile-details">
+    <div class="details-top">
+      <h1 class="pr-text">@{{user.username}}</h1>
+      <p>joined: {{user.date_joined}}</p>
+    </div>
+    <div class="bio">
+      <p class="txt-black">{{user.profile.bio}}</p>
+      <br />
+      <a href="/edit_profile/profile{{profile.pk}}" class="pr-text"
+        >Edit Your Profile</a
+      >
+    </div>
+  </div>
+</div>
+<br><br>
+{% if not page_obj %}
+<h1 class="pr-text">There are no posts yet</h1>
+<br />
+<a href="{% url 'blog:create_post' %}" class="pr-text"> + Create Post</a>
+
+{% endif %} {% for post in page_obj %}
+<div class="post">
+  <div class="main-section">
+    <div class="img-section">
+      <img
+        class="profile-img-sm"
+        src="{{post.author.profile.profile_pic.url}}"
+        alt=""
+        srcset=""
+      />
+    </div>
+    <div class="post-section">
+      <div class="detail-top">
+        <a href="/profile/{{post.author.id}}" class="pr-text">
+          <h1>{{post.author}}</h1>
+        </a>
+        <p class="detail-time">posted on {{post.publish}}</p>
+      </div>
+
+      <div class="post-det-section">
+        <p>
+          {{post.body|truncatewords:20|linebreaks}}
+          <a href="/details/{{post.slug}}" class="pr-text"
+            ><span> Read More </span></a
+          >
+        </p>
+      </div>
+      <div class="post-options">
+        <a href="" class="like" id="like-btn">like</a>
+        <a href="/details/{{post.slug}}/" class="" id="comment-btn"
+          >{{post.post.count}} Comment{{post.post.count|pluralize}}</a
+        >
+
+        {% if post.author == user %}
+        <a href="/edit_post/{{post.slug}}">Edit Post</a>
+        <a href="/delete_post/{{post.pk}}">Delete Post</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<br /><br />
+{% endfor %} {% include 'blog/pagination.html' %} {% endblock content %}

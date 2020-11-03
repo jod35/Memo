@@ -11,9 +11,12 @@ class UserRegistrationForm(UserCreationForm):
         fields=['username','email','password1','password2']
 
 class PostCreationForm(forms.ModelForm):
+    body=forms.CharField(
+        widget=forms.Textarea(attrs=({'rows':5}))
+    )
     class Meta:
         model=Post
-        fields=['title','body','status']
+        fields=['body',]
 
 
 class CommentForm(forms.ModelForm):
@@ -31,3 +34,4 @@ class ProfileCreationForm(forms.ModelForm):
     class Meta:
         model=Profile
         fields=['profile_pic','bio']
+
