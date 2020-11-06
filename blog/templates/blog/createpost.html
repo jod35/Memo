@@ -3,27 +3,18 @@
 {% block title %}
     Create A Post
 {% endblock title %}
-{% block content %}
-    <div class="post-form">
-        <h2>Create A Post</h2>
-        <form action="" method="post">
-            {% csrf_token %}
-            
-            {% for f in form %}
-                <div class="form-group">
-                    
-                    <p>{{ f.label }}</p>
-                    <br>
-                    <p class="form-control">{{f}}</p>
-                </div>
-            {% endfor %}
-                <br>
-            <input type="submit" value="Save" class="comment-btn">
-            <a href="{% url 'blog:user_posts' %}" class="comment-btn">Back</a>
-        </form>
+{% block body %}
+  <h1 class="pr-text">What is on Your Mind?</h1>
+  <form class="" method="post">
+    {% csrf_token%}
+    {% for f in form%}
+        <p class="pr-text">{{f.label}}</p>
         <br>
-        
-    </div>
-{% endblock content %}
-    
-    
+        {{f}}
+        <br>
+        <br>
+    {% endfor%}
+    <input type="submit" value="Post" class="mybtn">
+    <a href="{% url 'blog:user_posts'%}" class="mybtn">Back</a>
+  </form>
+{% endblock body %}

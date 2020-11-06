@@ -180,7 +180,7 @@ class PersonalProfileView(View):
 
 
 """
-    POST DETAIL VIEW 
+    POST DETAIL VIEW
 """
 
 
@@ -300,12 +300,12 @@ def like_post(request,id):
                 post.users_like.add(request.user)
             else:
                 post.users_like.remove(request.user)
-            
+
             return redirect('blog:user_home')
 
         except:
             pass
-    
+
     return redirect('blog:user_home')
 
 
@@ -370,5 +370,3 @@ class ProfileEditView(UpdateView):
     context_object_name = 'profile'
     fields=['profile_pic','bio']
     success_url='/profile/'
-
-    

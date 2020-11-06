@@ -12,7 +12,7 @@ class UserRegistrationForm(UserCreationForm):
 
 class PostCreationForm(forms.ModelForm):
     body=forms.CharField(
-        widget=forms.Textarea(attrs=({'rows':5}))
+        widget=forms.Textarea(attrs=({'rows':5,'class':'form-control'}))
     )
     class Meta:
         model=Post
@@ -34,4 +34,3 @@ class ProfileCreationForm(forms.ModelForm):
     class Meta:
         model=Profile
         fields=['profile_pic','bio']
-
