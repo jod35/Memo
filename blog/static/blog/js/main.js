@@ -28,7 +28,7 @@ function checkTime(i) {
 open_btn.addEventListener('click',function(){
     left_container.style.width="0%";
     left_container.style.display="none";
-    // sidebar.style.display="block";
+    sidebar.style.display="block";
     sidebar.style.width="100%";
     open_btn.style.display="none";
     close_btn.style.display="inline";
@@ -43,8 +43,8 @@ close_btn.addEventListener('click',function(){
     sidebar.style.width="20%";
     open_btn.style.display="inline";
     close_btn.style.display="none";
-    left_container.style.width="80%";
-    left_container.style.display="block"
+    left_container.style.width="100%";
+    left_container.style.display="block";
 
     for(let i of link){
         i.style.display="none";

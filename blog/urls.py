@@ -16,6 +16,7 @@ urlpatterns = [
     path('create_post/', login_required(views.CreatePostView.as_view()),
          name='create_post'),
     path('posts/', login_required(views.PostView.as_view()), name='user_posts'),
+    path('like/<int:id>/',views.like_post,name='like_post'),
     path('my_posts/', login_required(views.MyPostView.as_view()), name='my_posts'),
     path('edit_post/<slug>',
          login_required(views.PostEditView.as_view()), name='edit_post'),

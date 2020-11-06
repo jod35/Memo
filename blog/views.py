@@ -3,6 +3,8 @@ from .forms import UserRegistrationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
+from django.http import JsonResponse
 from .models import Post, Comment, Profile,Follower
 from .forms import PostCreationForm, CommentForm, ProfileCreationForm
 from django.views.generic import UpdateView, DeleteView, ListView
@@ -280,6 +282,31 @@ class PostView(ListView):
     queryset = Post.objects.all()
     paginate_by = 5
     template_name = 'blog/posts.html'
+
+
+"""
+    VIEW FOR LIKING POSTS
+"""
+@require_POST
+@login_required
+def like_post(request,id):
+    post_id=request.POST.get('id')
+    action=request.POST.get('action')
+    if post_id and action:
+        try:
+            post=Post.objects.get(id=post_id)
+
+            if action =='like':
+                post.users_like.add(request.user)
+            else:
+                post.users_like.remove(request.user)
+            
+            return redirect('blog:user_home')
+
+        except:
+            pass
+    
+    return redirect('blog:user_home')
 
 
 """

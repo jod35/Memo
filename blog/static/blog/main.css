@@ -136,7 +136,6 @@ body {
   padding: 10px;
   background-color: white;
   border-radius: 7px;
-  box-shadow: 0 2px 2px 0 lightslategray;
   width: 80%;
 }
 
@@ -325,7 +324,7 @@ footer {
 }
 @media (max-width: 700px) {
   html{
-    font-size: 12px;
+    font-size: 0.98em;
   }
   #form {
     padding: 2%;
@@ -333,7 +332,19 @@ footer {
   .form {
     width: 80%;
   }
+  #container{
+    display: block;
+  }
   .side-bar {
-    width:20%;
+    width: 100%;
+    height: 0%;
+    display: none;
+  }
+  .left{
+    width: 100%;
+    padding: 20px;
+  }
+  .post{
+    width: 95%;
   }
 }
