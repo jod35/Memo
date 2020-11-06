@@ -33,6 +33,7 @@ class Post(models.Model):
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    users_like=models.ManyToManyField(User,related_name='posts_liked',blank=True)
 
 
     class Meta:
@@ -43,7 +44,7 @@ class Post(models.Model):
         super(Post, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.title
+        return self.body
 
 
 
@@ -62,6 +63,8 @@ class Comment(models.Model):
     body = models.TextField()
 
     created = models.DateTimeField(auto_now_add=True)
+
+    users_like=models.ManyToManyField(User,related_name='comments_liked',blank=True)
 
     def __str__(self):
         return f"{self.body} by {self.author}"

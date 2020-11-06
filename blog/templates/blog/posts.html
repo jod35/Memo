@@ -1,63 +1,46 @@
-{% extends 'blog/postlogin.html' %} {% block title %} News Feeds {% endblock title %} {% block content %}
-<div class="posts">
-  <div class="messages">
-    {% if messages %} {% for message in messages %}
-    <div class="message">
-      <div class="message-body">{{message}}</div>
-      <div class="">
-        <a href="#" id="close-message" style="color: green">X</a>
-      </div>
+{%extends 'blog/postlogin.html'%}
+{% block body%}
+    <div class="">
+        <a href="{% url 'blog:create_post'%}" class="pr-text" id="create-post">Create Post</a>
+        <a href="" class="pr-text">My Posts</a>
     </div>
-    <br />
-    {% endfor %} {% endif %}
-  </div>
-  <div class="post-options">
-    <a href="{% url 'blog:create_post' %}" class="pr-text">Create Post</a>
-    <a href="{% url 'blog:my_posts' %}" class="pr-text">My Posts</a>
-  </div>
-  <br />
-  {% for post in page_obj %}
-  <div class="post">
-    <div class="main-section">
-      <div class="img-section">
-        <img
-          class="profile-img-sm"
-          src="{{post.author.profile.profile_pic.url}}"
-          alt=""
-          srcset=""
-        />
-      </div>
-      <div class="post-section">
-        <div class="detail-top">
-          <a href="/profile/{{post.author.id}}" class="pr-text">
-            <h1>@{{post.author}}</h1>
-          </a>
-          <p class="detail-time">posted on {{post.publish}}</p>
-        </div>
 
-        <div class="post-det-section">
-          <p>
-            {{post.body|truncatewords:5|linebreaks}}
-            <a href="/details/{{post.slug}}" class="pr-text"
-              ><span> Read More </span></a
-            >
-          </p>
-        </div>
-        <div class="post-options">
-          <a href="" class="like" id="like-btn">like</a>
-          <a href="/details/{{post.slug}}/" class="" id="comment-btn"
-            >{{post.post.count}} Comment{{post.post.count|pluralize}}</a
-          >
+    <br>
 
-          {% if post.author == user %}
-          <a href="/edit_post/{{post.slug}}">Edit Post</a>
-          <a href="/delete_post/{{post.pk}}">Delete Post</a>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-  </div>
-  <br /><br />
-  {% endfor %} {% include 'blog/pagination.html' %}
-</div>
-{% endblock content %}
+     {% for post in page_obj%}
+     <div class="post">
+       <div class="profile-img-section">
+         <img src="{{post.author.profile.profile_pic.url}}" alt="" class="profile-img-sm" />
+       </div>
+       <div class="post-details">
+         <div class="post-top">
+           <a href="" class="pr-text"><h1>{{post.author.username}}</h1></a>
+           <small class="light-g-text" style="margin-left:20px">
+             <p>{{post.publish}}</p>
+           </small>
+         </div>
+         <div class="post-body">
+            {{post.body|truncatewords:100}} <a class="pr-text" href="/details/{{post.slug}}/">Read More</a>
+           {%if post.img%}
+           <div class="post-img-section">
+               <img src="" alt="post image" class="post-img">
+           </div>
+           {% endif%}
+         </div>
+         <br>
+         <div class="post-options">
+             <a href="" class="pr-text">Like</a>
+             <a href="/details/{{post.slug}}" class="pr-text">{{post.post.count}}.Comment{{post.post.count|pluralize}}</a>
+             <a href="" class="pr-text">Share</a>
+             {% if post.author == request.user%}
+                 <a href="/edit_post/{{post.slug}}/" class="pr-text">Edit</a>
+                 <a href="/delete_post/{{post.pk}}/" class="pr-text">Delete</a>
+             {% endif%}
+         </div>
+       </div>
+     </div>
+     <br>
+     {% endfor%}
+
+     {% include 'blog/pagination.html'%}
+{% endblock body%}

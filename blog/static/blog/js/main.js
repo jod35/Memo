@@ -1,12 +1,6 @@
-const open_btn=document.querySelector('#open-btn');
-const close_btn=document.querySelector('#close-btn');
-const sidebar=document.querySelector('.side-bar');
-const links=document.querySelectorAll('.side-bar-link');
-const left_container=document.querySelector('.left');
-const link=document.querySelectorAll('.link');
-const comment_section=document.querySelector('.comment-section');
-
-
+window.onload=function(){
+  startTime();
+}
 //clock js
 function startTime() {
     var today = new Date();
@@ -24,47 +18,37 @@ function checkTime(i) {
     return i;
 }
 
-// sidebar js
-open_btn.addEventListener('click',function(){
-    left_container.style.width="0%";
-    left_container.style.display="none";
-    // sidebar.style.display="block";
-    sidebar.style.width="100%";
-    open_btn.style.display="none";
-    close_btn.style.display="inline";
 
-    for(let i of link){
+
+const mobileNavBar=document.querySelector(".mobile-nav");
+const mobileNavLinks=document.querySelectorAll(".mobile-link");
+const mobileNavOpenButton=document.querySelector(".nav-open-btn");
+const mobileNavCloseButton=document.querySelector(".nav-close-btn");
+
+
+mobileNavOpenButton.addEventListener('click',displayMobileNavigationBar);
+
+
+function displayMobileNavigationBar(){
+
+    mobileNavOpenButton.style.display="none";
+    mobileNavBar.style.height="80vh";
+    mobileNavCloseButton.style.display="block";
+
+    for(i of mobileNavLinks){
         i.style.display="block";
     }
-
-});
-
-close_btn.addEventListener('click',function(){
-    sidebar.style.width="20%";
-    open_btn.style.display="inline";
-    close_btn.style.display="none";
-    left_container.style.width="80%";
-    left_container.style.display="block"
-
-    for(let i of link){
-        i.style.display="none";
-    }
-});
-
-
-function readURL(input) {
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
-
-    reader.onload = function(e) {
-      $('#blah').attr('src', e.target.result);
-    }
-
-    reader.readAsDataURL(input.files[0]); // convert to base64 string
-  }
 }
 
+mobileNavCloseButton.addEventListener("click",closeMobileNavigationBar);
 
-document.querySelector('#close-message').onclick=function(){
-  document.querySelector('.messages').style.display="none";
+
+function closeMobileNavigationBar(){
+    mobileNavOpenButton.style.display="block";
+    mobileNavBar.style.height="0vh";
+    mobileNavCloseButton.style.display="none";
+
+    for(i of mobileNavLinks){
+        i.style.display="none";
+    }
 }

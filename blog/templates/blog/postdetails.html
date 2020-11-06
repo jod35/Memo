@@ -1,34 +1,37 @@
 {% extends 'blog/postlogin.html' %} {% load static%} {% block title %}
-{{post.title}} {% endblock title %} {% block content %}
+{{post.title}} {% endblock title %} {% block body %}
 <div class="post">
-  <div class="main-section">
-    <div class="img-section">
-      <img
-        class="profile-img-sm"
-        src="{{post.author.profile.profile_pic.url}}"
-        alt=""
-        srcset=""
-        width="100"
-      />
+  <div class="profile-img-section">
+    <img src="{{post.author.profile.profile_pic.url}}" alt="" class="profile-img-sm" />
+  </div>
+  <div class="post-details">
+    <div class="post-top">
+      <a href="" class="pr-text"><h1>{{post.author.username}}</h1></a>
+      <small class="light-g-text" style="margin-left:20px">
+        <p>{{post.publish}}</p>
+      </small>
     </div>
-    <div class="post-section">
-      <div class="detail-top">
-        <h1 class="post-title">{{post.author}}</h1>
-        <p class="detail-time">posted {{post.publish}}</p>
+    <div class="post-body">
+       {{post.body|truncatewords:100}} <a class="pr-text" href="/details/{{post.slug}}/">Read More</a>
+      {%if post.img%}
+      <div class="post-img-section">
+          <img src="" alt="post image" class="post-img">
       </div>
-      <h2 class="post-title">{{ post.title }}</h2>
-      <div class="detail-body">{{post.body}}</div>
+      {% endif%}
+    </div>
+    <br>
+    <div class="post-options">
+        <a href="" class="pr-text">Like</a>
+        <a href="#" id="comment-btn" class="pr-text">{{post.post.count}}.Comment{{post.post.count|pluralize}}</a>
+        <a href="" class="pr-text">Share</a>
+        {% if post.author == request.user%}
+            <a href="/edit_post/{{post.slug}}/" class="pr-text">Edit</a>
+            <a href="/delete_post/{{post.pk}}/" class="pr-text">Delete</a>
+        {% endif%}
     </div>
   </div>
-  <div class="post-options">
-    <a href="" class="like" id="like-btn">like</a>
-    <a href="#" class="" id="comment-btn">Comment</a>
-
-    {% if post.author == user %}
-    <a href="/edit_post/{{post.slug}}">Edit Post</a>
-    <a href="/delete_post/{{post.pk}}">Delete Post</a>
-    {% endif %}
-  </div>
+</div>
+<br>
   <div class="comment-section">
     <form action="" method="post">
       <h3 class="pr-text">Write Your Comment</h3>
@@ -36,8 +39,8 @@
 
       <br />
       <br />
-      <input type="submit" class="comment-btn" value="Comment" />
-      <a href="#" class="comment-btn" id="cancel-btn">Cancel</a>
+      <input type="submit" class="comment-btn mybtn" value="Comment" />
+      <a href="#" class="mybtn" id="cancel-btn" >Cancel</a>
     </form>
   </div>
   <br /><br />
@@ -86,4 +89,4 @@
   {% endfor%}
 </div>
 
-{% endblock content %}
+{% endblock body %}
