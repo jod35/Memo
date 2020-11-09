@@ -12,8 +12,8 @@
       </small>
     </div>
     <div class="post-body">
-       {{post.body|truncatewords:100}} <a class="pr-text" href="/details/{{post.slug}}/">Read More</a>
-      {%if post.img%}
+       {{post.body}}       
+       {%if post.img%}
       <div class="post-img-section">
           <img src="" alt="post image" class="post-img">
       </div>
@@ -47,14 +47,14 @@
 </div>
 <div class="comments">
   {% if comments%}
-  <h3 class="pr-text">{{comments.count}} Comments</h3>
+  <h3 class="pr-text">{{comments.count}} Comment{{comments.count|pluralize}}</h3>
   <br />
   {% else %}
   <h3 class="post-title">No comments yet</h3>
   {% endif%} {% for comment in comments%}
   <div class="comment">
     <div class="main-section">
-      <div class="img-section">
+      <div class="">
         <img
           class="profile-img-sm"
           src="{{comment.author.profile.profile_pic.url}}"
@@ -63,22 +63,23 @@
         />
       </div>
       <div class="post-section">
-        <div class="detail-top">
+        <div class="post-top">
           <a href="/profile/{{post.author.id}}" class="pr-text">
-            <h1>@{{post.author}}</h1>
+            <h1>{{post.author.username}}</h1>
           </a>
-          <p class="detail-time">{{comment.created}}</p>
+          <p class="light-g-text">{{comment.created}}</p>
         </div>
-
+        <br>
         <div class="post-det-section">
           <p>{{comment.body}}</p>
         </div>
+        <br>
         <div class="comment-options">
           {% if comment.author == request.user %}
-          <a href="/delete_comment/{{comment.id}}/{{post.slug}}">delete</a>
+          <a class="pr-text" href="/delete_comment/{{comment.id}}/{{post.slug}}/">delete</a>
           {% endif %}
-          <a href="">Like</a>
-          <a href="">Reply</a>
+          <a class="pr-text" href="">Like</a>
+          <a class="pr-text" href="">Reply</a>
         </div>
       </div>
     </div>
