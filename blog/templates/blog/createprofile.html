@@ -3,7 +3,7 @@
 {% block title%}
   Create Your Profile
 {% endblock title%}
-{% block content%}
+{% block body%}
 <div class="messages">
     {% if messages %}
         {% for message in messages %}
@@ -21,7 +21,7 @@
     {% endif %}
 </div>
 <div class="post-form">
-    <h2>Create Your Profile</h2>
+    <h2 class="pr-text">Create Your Profile</h2>
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
@@ -59,4 +59,4 @@
 
 
 
-{% endblock content%}
+{% endblock body%}

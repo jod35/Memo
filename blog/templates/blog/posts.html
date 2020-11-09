@@ -1,5 +1,23 @@
 {%extends 'blog/postlogin.html'%}
 {% block body%}
+    
+   <div class="message">
+    {% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+            <div class="message-success">
+              <p class="msg-text">{{message}}</p>
+              <a href="#" class="msg-close">X</a>
+            </div>
+        {% else %}
+            <div class="message-error">
+              {{message}}
+            </div>
+        {% endif %}  
+    {% endfor %}
+  {% endif %}
+   </div>
+      
     <div class="">
         <a href="{% url 'blog:create_post'%}" class="pr-text" id="create-post">Create Post</a>
         <a href="" class="pr-text">My Posts</a>
@@ -14,7 +32,7 @@
        </div>
        <div class="post-details">
          <div class="post-top">
-           <a href="/profile/{{post.author.profile.id}}/" class="pr-text"><h1>{{post.author.username}}</h1></a>
+           <a href="/profile/{{post.author.id}}/" class="pr-text"><h1>{{post.author.username}}</h1></a>
            <small class="light-g-text" style="margin-left:20px">
              <p>{{post.publish}}</p>
            </small>

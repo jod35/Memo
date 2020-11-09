@@ -169,9 +169,29 @@ ul {
 }
 .form input {
   width: 95%;
+  padding: 10px;
 }
 .form button{
     width: 100%;
+}
+.message-success{
+    background-color: lightgreen;
+    color: green;
+    border: 1px solid green;
+    padding: 15px;
+    border-radius: 7px;
+    display: flex;
+}
+.message-success{
+    background-color: pink;
+    color: red;
+    border: 1px solid red;
+    padding: 15px;
+    border-radius: 7px;
+    display: flex;
+}
+.msg-close{
+    color: green;
 }
 @media (max-width: 650px) {
   .desktop-nav {

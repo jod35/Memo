@@ -3,6 +3,12 @@
     Home
 {% endblock title%}
 {% block body%}
+    
+    {% if not page_obj %}
+      <h1 class="pr-text">There are no posts yet.</h1>
+      <a href="{% url 'blog:create_post' %}" class="pr-text">Create a Post</a>
+      {% else %}
+       
      {% for post in page_obj%}
      <div class="post">
        <div class="profile-img-section">
@@ -10,7 +16,7 @@
        </div>
        <div class="post-details">
          <div class="post-top">
-           <a href="/profile/{{post.author.profile.id}}/" class="pr-text"><h1>{{post.author.username}}</h1></a>
+           <a href="/profile/{{post.author.id}}/" class="pr-text"><h1>{{post.author.username}}</h1></a>
            <small class="light-g-text" style="margin-left:20px">
              <p>{{post.publish}}</p>
            </small>
@@ -37,6 +43,9 @@
      </div>
      <br>
      {% endfor%}
-
      {% include 'blog/pagination.html'%}
+    {% endif %}
+     
+
+     
 {% endblock body%}

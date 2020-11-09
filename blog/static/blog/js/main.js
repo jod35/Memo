@@ -52,3 +52,10 @@ function closeMobileNavigationBar(){
         i.style.display="none";
     }
 }
+
+const message_close_button=document.querySelector('.msg-close');
+const message_section=document.querySelector('.message');
+
+message_close_button.addEventListener('click',function(){
+    message_section.style.display="none";
+})
