@@ -1,141 +1,274 @@
-*{
-    padding: 0;
-    margin: 0;
-    font-family: 'Courier New', Courier, monospace;
-    outline: none;
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Courier New", Courier, monospace;
+  outline: none;
 }
-a{
-    text-decoration: none;
+a {
+  text-decoration: none;
 }
-ul{
-    list-style: none;
+ul {
+  list-style: none;
 }
-.nav{
-    display: flex;
-    justify-content: space-between;
-    background-color: dodgerblue;
-    color: white;
-    padding: 20px;
+.nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: dodgerblue;
+  color: white;
+  padding: 20px;
 }
 .logo {
-    color: white;
+  color: white;
 }
-.time{
-    padding: 5px;
+.time {
+  padding: 5px;
 }
-.options{
-    padding-top: 5px;
+.options {
+  padding-top: 5px;
 }
-.options a{
-    color: white;
-    font-weight: bold;
-    margin-left: 20px;
-    transition: 1.6s all;
+.options a {
+  color: white;
+  font-weight: bold;
+  margin-left: 20px;
+  transition: 1.6s all;
 }
-.options a:hover{
-   color: lightgray;
+.options a:hover {
+  color: lightgray;
 }
-.nav-open-btn{
-    display: none;
+.nav-open-btn {
+  display: none;
 }
-.nav-close-btn{
-    display: none;
+.nav-close-btn {
+  display: none;
 }
-.mobile-nav{
-    /* min-height: 100vh; */
-    height: 0%;
-    background-color: dodgerblue;
-    transition: 1.8s all;
-
+.mobile-nav {
+  /* min-height: 100vh; */
+  height: 0%;
+  background-color: dodgerblue;
+  transition: 1.8s all;
 }
-.mobile-nav a{
-    color: white;
-    display: none;
-    text-transform: capitalize;
-    text-align: center;
-    padding: 20px;
-    font-weight: bold;
-    transition: 1.6s all;
+.mobile-nav a {
+  color: white;
+  display: none;
+  text-transform: capitalize;
+  text-align: center;
+  padding: 20px;
+  font-weight: bold;
+  transition: 1.6s all;
 }
-.mobile-nav a:hover{
-    background-color: lightgray;
-    color: dodgerblue;
+.mobile-nav a:hover {
+  background-color: lightgray;
+  color: dodgerblue;
 }
-#main{
-    padding:5%;
+#main {
+  padding: 5%;
 }
-.pr-text{
-    color: dodgerblue;
+.pr-text {
+  color: dodgerblue;
 }
-.light-g-text{
-    color: lightslategray;
+.light-g-text {
+  color: lightslategray;
 }
-.post-form{
-    display: none;
+.post-form {
+  border: 1px solid lightslategray;
+  border-radius: 7px;
+  padding: 20px;
 }
-.post{
-    width: 95%;
-    border: 1px solid lightgray;
-    border-radius: 7px;
-    padding: 1.2em;
-    display: flex;
-}
-.form-control{
+.form-control {
   width: 100%;
 }
-.post-details{
-    padding: 20px;
-    width: 90%;
+.profile-form {
+  display: flex;
+  justify-content: space-around;
 }
-.profile-img-section{
-    width: 10%;
-    padding: 20px;
+.post {
+  width: 95%;
+  border: 1px solid lightgray;
+  border-radius: 7px;
+  padding: 0;
+  display: flex;
 }
-.profile-img-sm{
+.form-control {
+  width: 100%;
+}
+.post-details {
+  padding: 20px;
+  width: 90%;
+}
+.profile-img-section {
+  width: 10%;
+  padding: 20px;
+}
+.profile-img-lg {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+.profile-img-sm {
   width: 100px;
   height: 100px;
   border-radius: 50%;
 }
-.post-top{
-    display: flex;
-    justify-content: space-between;
+
+.post-top {
+  display: flex;
+  justify-content: space-between;
 }
-.post-img-section{
-    height: 300px;
-    background-color: lightgray;
+.post-img-section {
+  height: 300px;
+  background-color: lightgray;
 }
-#post{
-    width: 100%;
+#post {
+  width: 100%;
 }
-.mybtn{
-    border:none;
-    background-color: dodgerblue;
-    color: white;
-    padding: 1.2em;
-    border-radius: 40%;
-    transition: 1.2s all;
+.mybtn {
+  border: none;
+  background-color: dodgerblue;
+  color: white;
+  padding: 15px;
+  border-radius: 10%;
+  transition: 1.2s all;
 }
-.mybtn:hover{
-    border: 0.8px solid dodgerblue;
-    background-color: white;
-    color: dodgerblue;
+.mybtn:hover {
+  border: none;
+  background-color: lightslategray;
+  color: white;
 }
-.comment-section{
+.comment-section {
   color: dodgerblue;
   display: none;
 }
-@media(max-width:650px){
-    .desktop-nav{
-        display: none;
-    }
-    .nav-open-btn{
-        display: block;
-        font-size: 1.5em;
-    }
-    .post{
-        display: block;
-    }
-    .profile-img-section{
-        width: 30%;
-    }
+.comment {
+  width: 50%;
+  padding: 15px;
+}
+.comment-options{
+  font-size: 15px;
+  padding: 5px;
+}
+.comment-det-section{
+  padding: 5px;
+}
+
+.img-section {
+  width: 20%;
+}
+.post-section {
+  width: 80%;
+}
+.main-section {
+  display: flex;
+  justify-content: space-between;
+}
+.profile {
+  text-align: center;
+}
+.text-lg {
+  font-size: 2.5em;
+}
+.form {
+  width: 40%;
+  margin: auto;
+  border: 1px solid lightslategray;
+  padding: 20px;
+  text-align: center;
+}
+.form input {
+  width: 95%;
+  padding: 10px;
+}
+.form button{
+    width: 100%;
+}
+.message-success{
+    background-color: lightgreen;
+    color: green;
+    border: 1px solid green;
+    padding: 15px;
+    border-radius: 7px;
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+}
+.message-error{
+    background-color: pink;
+    color: red;
+    border: 1px solid red;
+    padding: 15px;
+    border-radius: 7px;
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    justify-content: space-between;
+}
+.msg-close{
+    color: black;
+}
+.text-center{
+  text-align: center;
+}
+@media (max-width: 650px) {
+  #main{
+    padding: 5px 0px 0px 10px;
+  }
+  .desktop-nav {
+    display: none;
+  }
+  .nav-open-btn {
+    display: block;
+    font-size: 1.5em;
+  }
+  .text-center{
+    padding: 20px;
+  }
+  .post {
+    display: block;
+    padding: 0;
+    border: none;
+    border-bottom: 1px solid lightgray;
+  }
+  .post-details{
+    padding: 10px;
+  }
+  .post-options{
+    font-size: 15px;
+  }
+  .profile{
+    padding-top: 10px;
+  }
+  .profile-img-section {
+    width: 100%;
+  }
+  .profile-img-sm{
+    width: 50px;
+    height: 50px;
+  }
+  .profile-img-lg{
+    width: 100px;
+    height: 100px;
+  }
+  .post-section {
+    margin-left: 20px;
+  }
+  .comments {
+    padding: 0px;
+  }
+  .comment {
+    width: 100%;
+    padding: 0;
+    font-size: 15px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid lightgray;
+  }
+  .form{
+      width: 80%;
+  }
+  form{
+    width: 80%;
+    
+  }
+  .profile-form{
+    display: block;
+  }
 }

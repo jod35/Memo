@@ -1,67 +1,64 @@
-{% load static %}
+{% load static%}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'blog/main.css' %}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet"> 
-    <style>
-        .bd-placeholder-img {
-          font-size: 1.125rem;
-          text-anchor: middle;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-        }
-  
-        @media (min-width: 768px) {
-          .bd-placeholder-img-lg {
-            font-size: 3.5rem;
-          }
-        }
-      </style>
-    <title>
-        Coroblog|
-        {% block title %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'blog/main.css'%}" />
+        <title>
+          {% block title%}
+                  Coro |{{title}}
+          {% endblock title%}
+        </title>
+
+  </head>
+  <body>
+    <section class="nav">
+      <div>
+        <a href="{% url 'blog:user_home'%}" class="logo"><h1>Coro</h1></a>
+      </div>
+      <div class="time" id="txt">06:000</div>
+      <div class="options">
+        <div class="desktop-nav">
+          
+          {% if user.is_authenticated %}
+            <a href="{% url 'blog:user_home'%}">Home</a>
+            <a href="{% url 'blog:user_posts'%}">Posts</a>
+            <a href="{% url 'blog:user_profile'%}">Profile</a>
+            <a href="{% url 'blog:logout'%}">Logout</a>
+            {% else %}
+            <a href="{% url 'blog:user_home'%}">Home</a>
+            <a href="{% url 'blog:login'%}">Login</a>
+            <a href="{% url 'blog:signup'%}">Profile</a>
+           
+          {% endif %}
             
-        {% endblock title %}  
-    </title>
-</head>
-<body>
-    <section class="header">
-        <nav>
-            <div class="logo">
-                <a href="{% url 'blog:index' %}" style="color: white;">Coroblog</a>
-            </div>
-            <div class="links">
-                {% if user.is_authenticated %}
-                        <a href="{% url 'blog:user_home' %}" class="link">home</a>
-                        <a href="{% url 'blog:logout' %}">Log Out</a>
-                    {% else %}
-                        <a class="link" href="{% url 'blog:index' %}">home</a>
-                        <a class="link" href="{% url 'blog:signup' %}">Sign Up</a>
-                        <a class="link" href="{% url 'blog:login' %}">Login</a>
-                {% endif %}
-                    
-            </div>
-        </nav>
-    </section>
-    <div class="main">
-        <div class="main-content">
-            {% block body %}
-        
-            {% endblock body %}
         </div>
-    </div>
-    <footer  class="footer mt-auto py-3">
-        <center class="text-muted">
-            Coroblog &copy; <script>
-                document.write(new Date().getFullYear())
-            </script>
-        </center>
-    </footer>
+        <a href="#" class="nav-open-btn">&#9776;</a>
+        <a href="#" class="nav-close-btn">X</a>
+      </div>
+    </section>
+    <section class="mobile-nav">
+      {% if user.is_authenticated %}
+            <a href="{% url 'blog:user_home'%}" class="mobile-link" >Home</a>
+            <a href="{% url 'blog:user_posts'%}" class="mobile-link" >Posts</a>
+            <a href="{% url 'blog:user_profile'%}" class="mobile-link" >Profile</a>
+            <a href="{% url 'blog:logout'%}" class="mobile-link" >Logout</a>
+            {% else %}
+            <a href="{% url 'blog:user_home'%}" class="mobile-link">Home</a>
+            <a href="{% url 'blog:login'%}" class="mobile-link">Login</a>
+            <a href="{% url 'blog:signup'%}" class="mobile-link">Sign Up</a>
+           
+          {% endif %}
+    </section>
+    <section id="main">
+      {%block body%}
+      {% endblock body%}
+    </section>
+
+ <script src="{% static 'blog/js/main.js'%}"></script>
+ <script src="{% static 'blog/js/jquery.js'%}"></script>
+ <script src="{% static 'blog/js/forms.js'%}"></script>
+  <script src="{% static 'blog/js/comments.js'%}"></script>
 </body>
 </html>

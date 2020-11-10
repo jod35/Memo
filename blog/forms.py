@@ -21,7 +21,7 @@ class PostCreationForm(forms.ModelForm):
 
 class CommentForm(forms.ModelForm):
     body=forms.CharField(
-        widget=forms.Textarea(attrs=({'rows':2}))
+        widget=forms.Textarea(attrs=({'rows':5}))
     )
     class Meta:
         model=Comment
@@ -29,7 +29,7 @@ class CommentForm(forms.ModelForm):
 
 class ProfileCreationForm(forms.ModelForm):
     bio=forms.CharField(
-        widget=forms.Textarea(attrs=({'rows':5}))
+        widget=forms.Textarea(attrs=({'rows':5,'class':'form-group'}))
     )
     class Meta:
         model=Profile

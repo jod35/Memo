@@ -3,25 +3,28 @@
 {% block title%}
   Create Your Profile
 {% endblock title%}
-{% block content%}
-<div class="messages">
+{% block body%}
+<div class="message">
     {% if messages %}
-        {% for message in messages %}
-            {% if message.tags == "success"%}
-                <div class="message-success">
-                    {{message}}
-                </div>
-            {%else%}
-                <div class="message-error">
-                    {{message}}
-                </div>
-            {%  endif %}
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+            <div class="message-success">
+              <p class="msg-text">{{message}}</p>
+              <a href="#" class="msg-close">X</a>
+            </div><br>
+
+        {% else %}
+            <div class="message-error">
+              {{message}}
+            </div>
             <br>
-        {% endfor %}
-    {% endif %}
+        {% endif %}  
+    {% endfor %}
+  {% endif %}
+   </div>
 </div>
 <div class="post-form">
-    <h2>Create Your Profile</h2>
+    <h2 class="pr-text">Create Your Profile</h2>
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
@@ -59,4 +62,4 @@
 
 
 
-{% endblock content%}
+{% endblock body%}

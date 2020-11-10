@@ -20,20 +20,36 @@
       <div class="time" id="txt">06:000</div>
       <div class="options">
         <div class="desktop-nav">
-          <a href="{% url 'blog:user_home'%}">Home</a>
-          <a href="{% url 'blog:user_posts'%}">Posts</a>
-          <a href="{% url 'blog:user_profile'%}">Profile</a>
-          <a href="{% url 'blog:logout'%}">Logout</a>
+          
+          {% if user.is_authenticated %}
+            <a href="{% url 'blog:user_home'%}">Home</a>
+            <a href="{% url 'blog:user_posts'%}">Posts</a>
+            <a href="{% url 'blog:user_profile'%}">Profile</a>
+            <a href="{% url 'blog:logout'%}">Logout</a>
+            {% else %}
+            <a href="{% url 'blog:user_home'%}">Home</a>
+            <a href="{% url 'blog:login'%}">Login</a>
+            <a href="{% url 'blog:signup'%}">Profile</a>
+           
+          {% endif %}
+            
         </div>
         <a href="#" class="nav-open-btn">&#9776;</a>
         <a href="#" class="nav-close-btn">X</a>
       </div>
     </section>
     <section class="mobile-nav">
-      <a href="" class="mobile-link">Home</a>
-      <a href="" class="mobile-link">Posts</a>
-      <a href="" class="mobile-link">Profiles</a>
-      <a href="" class="mobile-link">Logout</a>
+      {% if user.is_authenticated %}
+            <a href="{% url 'blog:user_home'%}" class="mobile-link" >Home</a>
+            <a href="{% url 'blog:user_posts'%}" class="mobile-link" >Posts</a>
+            <a href="{% url 'blog:user_profile'%}" class="mobile-link" >Profile</a>
+            <a href="{% url 'blog:logout'%}" class="mobile-link" >Logout</a>
+            {% else %}
+            <a href="{% url 'blog:user_home'%}" class="mobile-link">Home</a>
+            <a href="{% url 'blog:login'%}" class="mobile-link">Login</a>
+            <a href="{% url 'blog:signup'%}" class="mobile-link">Profile</a>
+           
+          {% endif %}
     </section>
     <section id="main">
       {%block body%}

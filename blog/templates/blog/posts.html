@@ -1,8 +1,28 @@
 {%extends 'blog/postlogin.html'%}
 {% block body%}
-    <div class="">
+    
+   <div class="message">
+    {% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+            <div class="message-success">
+              <p class="msg-text">{{message}}</p>
+              <a href="#" class="msg-close">X</a>
+            </div>
+            <br>
+        {% else %}
+            <div class="message-error">
+              {{message}}
+            </div>
+            <br>
+        {% endif %}  
+    {% endfor %}
+  {% endif %}
+   </div>
+      
+    <div class="text-center">
         <a href="{% url 'blog:create_post'%}" class="pr-text" id="create-post">Create Post</a>
-        <a href="" class="pr-text">My Posts</a>
+        <a href="{% url 'blog:my_posts' %}" class="pr-text">My Posts</a>
     </div>
 
     <br>
@@ -14,7 +34,7 @@
        </div>
        <div class="post-details">
          <div class="post-top">
-           <a href="" class="pr-text"><h1>{{post.author.username}}</h1></a>
+           <a href="/profile/{{post.author.username}}/" class="pr-text"><h1>{{post.author.username}}</h1></a>
            <small class="light-g-text" style="margin-left:20px">
              <p>{{post.publish}}</p>
            </small>
@@ -30,7 +50,7 @@
          <br>
          <div class="post-options">
              <a href="" class="pr-text">Like</a>
-             <a href="/details/{{post.slug}}" class="pr-text">{{post.post.count}}.Comment{{post.post.count|pluralize}}</a>
+             <a href="/details/{{post.slug}}/" class="pr-text">{{post.post.count}}.Comment{{post.post.count|pluralize}}</a>
              <a href="" class="pr-text">Share</a>
              {% if post.author == request.user%}
                  <a href="/edit_post/{{post.slug}}/" class="pr-text">Edit</a>
