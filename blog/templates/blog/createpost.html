@@ -8,8 +8,6 @@
   <form class="" method="post">
     {% csrf_token%}
     {% for f in form%}
-        <p class="pr-text">{{f.label}}</p>
-        <br>
         {{f}}
         <br>
         <br>
