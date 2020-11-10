@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect,get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import UserRegistrationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.http import JsonResponse
-from .models import Post, Comment, Profile,Follower
+from .models import Post, Comment, Profile, Follower
 from .forms import PostCreationForm, CommentForm, ProfileCreationForm
 from django.views.generic import UpdateView, DeleteView, ListView
 from django.contrib.messages.views import SuccessMessageMixin
@@ -140,7 +140,6 @@ class CurrentUserProfile(View):
                                                      }))
 
 
-
 """
 PROFILE VIEW FOR OTHER USERS
 """
@@ -149,8 +148,8 @@ PROFILE VIEW FOR OTHER USERS
 class PersonalProfileView(View):
     template_name = 'blog/user.html'
 
-    def get(self, request, id, *args, **kwargs):
-        user_ = User.objects.get(id=id)
+    def get(self, request, username, *args, **kwargs):
+        user_ = User.objects.filter(username=username).first()
 
         profile = Profile.objects.filter(user=user_).first()
 
@@ -170,13 +169,11 @@ class PersonalProfileView(View):
 
         return render(request, 'blog/user.html', context)
 
+        def post(self, request, id, *args, **kwargs):
 
-        def post(self,request,id,*args,**kwargs):
-
-            user=get_object_or_404(User,id=id)
+            user = get_object_or_404(User, id=id)
 
             # new_follower=Follower(user=)
-
 
 
 """
@@ -216,6 +213,8 @@ class PostDetailView(View):
             obj.author = request.user
 
             obj.save()
+
+            form = self.form_class(initial=self.initial)
 
         context = {'post': post, 'form': form, 'comments': comments}
 
@@ -287,16 +286,18 @@ class PostView(ListView):
 """
     VIEW FOR LIKING POSTS
 """
+
+
 @require_POST
 @login_required
-def like_post(request,id):
-    post_id=request.POST.get('id')
-    action=request.POST.get('action')
+def like_post(request, id):
+    post_id = request.POST.get('id')
+    action = request.POST.get('action')
     if post_id and action:
         try:
-            post=Post.objects.get(id=post_id)
+            post = Post.objects.get(id=post_id)
 
-            if action =='like':
+            if action == 'like':
                 post.users_like.add(request.user)
             else:
                 post.users_like.remove(request.user)
@@ -328,9 +329,12 @@ class MyPostView(View):
 
         return render(request, self.template_name, {'page_obj': page_obj})
 
+
 """
 VIEW FOR DELETION OF POSTS
 """
+
+
 class PostEditView(UpdateView, SuccessMessageMixin):
     model = Post
     fields = ['body']
@@ -339,9 +343,11 @@ class PostEditView(UpdateView, SuccessMessageMixin):
     success_message = "Post has been Updated successfully"
     context_object_name = 'post/editpost.html'
 
+
 """
     view for deleting posts
 """
+
 
 class PostDeleteView(DeleteView):
     model = Post
@@ -349,24 +355,29 @@ class PostDeleteView(DeleteView):
     success_url = "/my_posts/"
     context_object_name = 'post'
 
+
 """
     view for deleting comments
 """
+
+
 class CommentDeleteView(View):
-    def get(self, request, id , slug , *args, **kwargs):
+    def get(self, request, id, slug, *args, **kwargs):
 
         comment = Comment.objects.get(id=id)
         post = Post.objects.filter(slug=slug).first()
 
         comment.delete()
 
-        return redirect('/details/{}'.format(post.slug))
+        return redirect('/details/{}/'.format(post.slug))
+
 
 """View for editing a user profile"""
+
 
 class ProfileEditView(UpdateView):
     model = Profile
     template_name = 'blog/editprofile.html'
     context_object_name = 'profile'
-    fields=['profile_pic','bio']
-    success_url='/profile/'
+    fields = ['profile_pic', 'bio']
+    success_url = '/profile/'

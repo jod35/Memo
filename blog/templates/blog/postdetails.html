@@ -64,16 +64,14 @@
       </div>
       <div class="post-section">
         <div class="post-top">
-          <a href="/profile/{{post.author.id}}" class="pr-text">
+          <a href="/profile/{{post.author.username}}/" class="pr-text">
             <h1>{{post.author.username}}</h1>
           </a>
           <p class="light-g-text">{{comment.created}}</p>
         </div>
-        <br>
-        <div class="post-det-section">
+        <div class="comment-det-section">
           <p>{{comment.body}}</p>
         </div>
-        <br>
         <div class="comment-options">
           {% if comment.author == request.user %}
           <a class="pr-text" href="/delete_comment/{{comment.id}}/{{post.slug}}/">delete</a>
@@ -84,8 +82,7 @@
       </div>
     </div>
   </div>
-
-  <br />
+  <br>
 
   {% endfor%}
 </div>

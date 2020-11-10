@@ -1,116 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="main.css" />
-    <title>Post Login</title>
-  </head>
-  <body>
-    <section class="nav">
-      <div>
-        <a href="" class="logo"><h1>Coro</h1></a>
-      </div>
-      <div class="time">06:000</div>
-      <div class="options">
-        <div class="desktop-nav">
-          <a href="">Home</a>
-          <a href="">Posts</a>
-          <a href="">Profiles</a>
-          <a href="">Logout</a>
-        </div>
-        <a href="#" class="nav-open-btn">&#9776;</a>
-        <a href="#" class="nav-close-btn">X</a>
-      </div>
-    </section>
-    <section class="mobile-nav">
-      <a href="" class="mobile-link">Home</a>
-      <a href="" class="mobile-link">Posts</a>
-      <a href="" class="mobile-link">Profiles</a>
-      <a href="" class="mobile-link">Logout</a>
-    </section>
-    <section id="main">
-      <div class="post">
-        <div class="profile-img-section">
-          <img src="" alt="" class="profile-img-sm" />
-        </div>
-        <div class="post-details">
-          <div class="post-top">
-            <a href="" class="pr-text"><h1>Jona</h1></a>
-            <small class="light-g-text">23 sep 2020</small>
-          </div>
-          <div class="post-body">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat,
-            itaque. <a class="pr-text">Read More</a>
-            <div class="post-img-section">
-                <img src="" alt="post image" class="post-img">
+{%extends 'blog/postlogin.html'%}
+{% block body%}
+    
+   <div class="message">
+    {% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+            <div class="message-success">
+              <p class="msg-text">{{message}}</p>
+              <a href="#" class="msg-close">X</a>
             </div>
-          </div>
-          <br>
-          <div class="post-options">
-              <a href="" class="pr-text">Like</a>
-              <a href="" class="pr-text">Comments</a>
-              <a href="" class="pr-text">Share</a>
-              <a href="" class="pr-text">Edit</a>
-              <a href="" class="pr-text">Delete</a>
-          </div>
-        </div>
-      </div>
-      <br>
-      <div class="post">
-        <div class="profile-img-section">
-          <img src="" alt="" class="profile-img-sm" />
-        </div>
-        <div class="post-details">
-          <div class="post-top">
-            <a href="" class="pr-text"><h1>Jona</h1></a>
-            <small class="light-g-text">23 sep 2020</small>
-          </div>
-          <div class="post-body">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat,
-            itaque. <a class="pr-text">Read More</a>
-          </div>
-          <br>
-          <div class="post-options">
-              <a href="" class="pr-text">Like</a>
-              <a href="" class="pr-text">Comments</a>
-              <a href="" class="pr-text">Share</a>
-              <a href="" class="pr-text">Edit</a>
-              <a href="" class="pr-text">Delete</a>
-          </div>
-        </div>
-      </div>
-      <br>
-      <div class="post">
-        <div class="profile-img-section">
-          <img src="" alt="" class="profile-img-sm" />
-        </div>
-        <div class="post-details">
-          <div class="post-top">
-            <a href="" class="pr-text"><h1>Jona</h1></a>
-            <small class="light-g-text">23 sep 2020</small>
-          </div>
-          <div class="post-body">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat,
-            itaque. <a class="pr-text">Read More</a>
-          </div>
-          <br>
-          <div class="post-options">
-              <a href="">Like</a>
-              <a href="">Comments</a>
-              <a href="">Share</a>
-              <a href="">Edit</a>
-              <a href="">Delete</a>
-          </div>
-        </div>
-      </div>
-      <br>
-      <div class="pagination">
-          <a href="">Previous</a>
-          Page 1 of 3
-          <a href="">Next</a>
-      </div>
-    </section>
-    <script src="main.js"></script>
-  </body>
-</html>
+        {% else %}
+            <div class="message-error">
+              {{message}}
+            </div>
+        {% endif %}  
+    {% endfor %}
+  {% endif %}
+   </div>
+      
+  
+  {% if page_obj %}
+  <div class="text-center">
+    <a href="{% url 'blog:create_post'%}" class="pr-text" id="create-post">Create Post</a>
+    <a href="{% url 'blog:my_posts' %}" class="pr-text">My Posts</a>
+</div>
+
+<br>
+
+ {% for post in page_obj%}
+ <div class="post">
+   <div class="profile-img-section">
+     <img src="{{post.author.profile.profile_pic.url}}" alt="" class="profile-img-sm" />
+   </div>
+   <div class="post-details">
+     <div class="post-top">
+       <a href="/profile/{{post.author.username}}/" class="pr-text"><h1>{{post.author.username}}</h1></a>
+       <small class="light-g-text" style="margin-left:20px">
+         <p>{{post.publish}}</p>
+       </small>
+     </div>
+     <div class="post-body">
+        {{post.body|truncatewords:100}} <a class="pr-text" href="/details/{{post.slug}}/">Read More</a>
+       {%if post.img%}
+       <div class="post-img-section">
+           <img src="" alt="post image" class="post-img">
+       </div>
+       {% endif%}
+     </div>
+     <br>
+     <div class="post-options">
+         <a href="" class="pr-text">Like</a>
+         <a href="/details/{{post.slug}}/" class="pr-text">{{post.post.count}}.Comment{{post.post.count|pluralize}}</a>
+         <a href="" class="pr-text">Share</a>
+         {% if post.author == request.user%}
+             <a href="/edit_post/{{post.slug}}/" class="pr-text">Edit</a>
+             <a href="/delete_post/{{post.pk}}/" class="pr-text">Delete</a>
+         {% endif%}
+     </div>
+   </div>
+ </div>
+ <br>
+ {% endfor%}
+
+ {% include 'blog/pagination.html'%}
+ {% else %}
+ <h1 class="pr-text">There are no posts yet.</h1>
+ <br>
+ <a href="{% url 'blog:create_post' %}" class="pr-text">Create Post</a> 
+  {% endif %}
+    
+{% endblock body%}

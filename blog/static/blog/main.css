@@ -85,7 +85,7 @@ ul {
   width: 95%;
   border: 1px solid lightgray;
   border-radius: 7px;
-  padding: 1.2em;
+  padding: 0;
   display: flex;
 }
 .form-control {
@@ -130,9 +130,9 @@ ul {
   transition: 1.2s all;
 }
 .mybtn:hover {
-  border: 0.8px solid dodgerblue;
-  background-color: white;
-  color: dodgerblue;
+  border: none;
+  background-color: lightslategray;
+  color: white;
 }
 .comment-section {
   color: dodgerblue;
@@ -140,10 +140,16 @@ ul {
 }
 .comment {
   width: 50%;
-  /* border: 1px solid lightslategray; */
-  background-color: rgb(241, 240, 240);
   padding: 15px;
 }
+.comment-options{
+  font-size: 15px;
+  padding: 5px;
+}
+.comment-det-section{
+  padding: 5px;
+}
+
 .img-section {
   width: 20%;
 }
@@ -181,19 +187,30 @@ ul {
     padding: 15px;
     border-radius: 7px;
     display: flex;
+    width: 80%;
+    justify-content: space-between;
 }
-.message-success{
+.message-error{
     background-color: pink;
     color: red;
     border: 1px solid red;
     padding: 15px;
     border-radius: 7px;
     display: flex;
+    justify-content: space-between;
+    width: 80%;
+    justify-content: space-between;
 }
 .msg-close{
-    color: green;
+    color: black;
+}
+.text-center{
+  text-align: center;
 }
 @media (max-width: 650px) {
+  #main{
+    padding: 5px 0px 0px 10px;
+  }
   .desktop-nav {
     display: none;
   }
@@ -201,22 +218,57 @@ ul {
     display: block;
     font-size: 1.5em;
   }
+  .text-center{
+    padding: 20px;
+  }
   .post {
     display: block;
+    padding: 0;
+    border: none;
+    border-bottom: 1px solid lightgray;
+  }
+  .post-details{
+    padding: 10px;
+  }
+  .post-options{
+    font-size: 15px;
+  }
+  .profile{
+    padding-top: 10px;
   }
   .profile-img-section {
-    width: 30%;
+    width: 100%;
+  }
+  .profile-img-sm{
+    width: 50px;
+    height: 50px;
+  }
+  .profile-img-lg{
+    width: 100px;
+    height: 100px;
   }
   .post-section {
     margin-left: 20px;
   }
   .comments {
-    padding: 20px;
+    padding: 0px;
   }
   .comment {
     width: 100%;
+    padding: 0;
+    font-size: 15px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid lightgray;
   }
   .form{
       width: 80%;
+  }
+  form{
+    width: 80%;
+    
+  }
+  .profile-form{
+    display: block;
   }
 }

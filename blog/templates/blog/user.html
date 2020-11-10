@@ -16,6 +16,9 @@
     <div class="bio">
       <p class="txt-black">{{user_.profile.bio}}</p>
       <br />
+      <form action="" method="post">
+        <input type="button" value="Follow" class="mybtn">
+      </form>
     </div>
   </div>
 </div>
@@ -36,7 +39,7 @@
   </div>
   <div class="post-details">
     <div class="post-top">
-      <a href="/profile/{{post.author.profile.id}}/" class="pr-text"
+      <a href="/profile/{{post.author.username}}/" class="pr-text"
         ><h1>{{post.author.username}}</h1></a
       >
       <small class="light-g-text" style="margin-left: 20px">
