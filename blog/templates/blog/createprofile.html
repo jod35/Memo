@@ -4,21 +4,24 @@
   Create Your Profile
 {% endblock title%}
 {% block body%}
-<div class="messages">
+<div class="message">
     {% if messages %}
-        {% for message in messages %}
-            {% if message.tags == "success"%}
-                <div class="message-success">
-                    {{message}}
-                </div>
-            {%else%}
-                <div class="message-error">
-                    {{message}}
-                </div>
-            {%  endif %}
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+            <div class="message-success">
+              <p class="msg-text">{{message}}</p>
+              <a href="#" class="msg-close">X</a>
+            </div><br>
+
+        {% else %}
+            <div class="message-error">
+              {{message}}
+            </div>
             <br>
-        {% endfor %}
-    {% endif %}
+        {% endif %}  
+    {% endfor %}
+  {% endif %}
+   </div>
 </div>
 <div class="post-form">
     <h2 class="pr-text">Create Your Profile</h2>

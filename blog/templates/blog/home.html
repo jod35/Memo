@@ -3,7 +3,24 @@
     Home
 {% endblock title%}
 {% block body%}
-    
+<div class="message">
+  {% if messages %}
+  {% for message in messages %}
+      {% if message.tags == 'success' %}
+          <div class="message-success">
+            <p class="msg-text">{{message}}</p>
+            <a href="#" class="msg-close">X</a>
+          </div>
+          <br>
+      {% else %}
+          <div class="message-error">
+            {{message}}
+          </div>
+          <br>
+      {% endif %}  
+  {% endfor %}
+{% endif %}
+ </div>
     {% if not page_obj %}
       <h1 class="pr-text">There are no posts yet.</h1>
       <a href="{% url 'blog:create_post' %}" class="pr-text">Create a Post</a>

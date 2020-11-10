@@ -9,10 +9,12 @@
               <p class="msg-text">{{message}}</p>
               <a href="#" class="msg-close">X</a>
             </div>
+            <br>
         {% else %}
             <div class="message-error">
               {{message}}
             </div>
+            <br>
         {% endif %}  
     {% endfor %}
   {% endif %}
