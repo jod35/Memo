@@ -66,6 +66,9 @@ ul {
 .light-g-text {
   color: lightslategray;
 }
+#main{
+  padding: 5%;
+}
 .post-form {
   border: 1px solid lightslategray;
   border-radius: 7px;
@@ -84,6 +87,7 @@ ul {
   border-radius: 7px;
   padding: 0;
   display: flex;
+  justify-content: space-between;
 }
 .form-control {
   width: 100%;
@@ -93,7 +97,7 @@ ul {
   width: 90%;
 }
 .profile-img-section {
-  width: 10%;
+  width: 20%;
   padding: 20px;
 }
 .profile-img-lg {
@@ -143,6 +147,9 @@ ul {
   font-size: 15px;
   padding: 5px;
 }
+.comment-options a{
+  margin-left: 10px;
+}
 .comment-det-section{
   padding: 5px;
 }
@@ -152,6 +159,9 @@ ul {
 }
 .post-section {
   width: 80%;
+}
+.post-options a{
+  margin: 10px;
 }
 .main-section {
   display: flex;
@@ -223,7 +233,7 @@ ul {
     padding: 20px;
   }
   .post {
-    display: block;
+    display: flex;
     padding: 0;
     border: none;
     border-bottom: 1px solid lightgray;
@@ -238,7 +248,7 @@ ul {
     padding-top: 10px;
   }
   .profile-img-section {
-    width: 100%;
+    width: 10%;
   }
   .profile-img-sm{
     width: 50px;

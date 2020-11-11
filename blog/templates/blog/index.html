@@ -26,7 +26,7 @@
         <br>
         <div class="post-options">
             <a href="" class="pr-text">Like</a>
-            <a href="/details/{{post.slug}}/" class="pr-text">{{post.post.count}}.Comment{{post.post.count|pluralize}}</a>
+            <a href="/details/{{post.slug}}/" class="pr-text">{{post.post.count}}.<i class="fa fa-comment    "></i>{{post.post.count|pluralize}}</a>
             <a href="" class="pr-text">Share</a>
             {% if post.author == request.user%}
                 <a href="/edit_post/{{post.slug}}/" class="pr-text">Edit</a>
