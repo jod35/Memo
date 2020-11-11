@@ -49,12 +49,12 @@
          </div>
          <br>
          <div class="post-options">
-             <a href="" class="pr-text">Like</a>
-             <a href="/details/{{post.slug}}/" class="pr-text">{{post.post.count}}.Comment{{post.post.count|pluralize}}</a>
-             <a href="" class="pr-text">Share</a>
+             <a href="" class="light-g-text"><i class="fa fa-thumbs-up   fa-2x "></i></a>
+             <a href="/details/{{post.slug}}/" class="light-g-text"><i class="fa fa-comment fa-2x"></i>{{post.post.count}}</a>
+             <a href="" class="light-g-text"><i class="fa fa-share fa-2x"></i></a>
              {% if post.author == request.user%}
-                 <a href="/edit_post/{{post.slug}}/" class="pr-text">Edit</a>
-                 <a href="/delete_post/{{post.pk}}/" class="pr-text">Delete</a>
+                 <a href="/edit_post/{{post.slug}}/" class="light-g-text"><i class="fa fa-pencil fa-2x"></i></a>
+                 <a href="/delete_post/{{post.pk}}/" class="light-g-text"><i class="fa fa-trash fa-2x"></i></a>
              {% endif%}
          </div>
        </div>
