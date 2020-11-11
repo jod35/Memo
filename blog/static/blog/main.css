@@ -285,4 +285,7 @@ ul {
   .profile-form{
     display: block;
   }
+  .mybtn{
+    padding: 10px;
+  }
 }
