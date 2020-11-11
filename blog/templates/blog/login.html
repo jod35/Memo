@@ -22,13 +22,14 @@
         {% endif %}
     </div>
     <div class="form">
-        <h2>Log In</h2>
+        <h2 class="pr-text">Log In</h2>
+        <br>
         <form action="" method="POST">
             {% csrf_token %}
-            <label for="username">Username</label>
+            <label for="username" class="pr-text">Username</label>
             <input type="text" name="username" >
             <br><br>
-            <label for="password">Password</label>
+            <label for="password" class="pr-text">Password</label>
             <input type="password" name="pasword" >
             <br>
             <br>
