@@ -18,6 +18,14 @@ class PostCreationForm(forms.ModelForm):
         model=Post
         fields=['body',]
 
+class PostEditForm(forms.ModelForm):
+    body=forms.CharField(
+        widget=forms.Textarea(attrs=({'rows':5,'class':'form-control'}))
+    )
+    class Meta:
+        model=Post
+        fields=['body',]
+
 
 class CommentForm(forms.ModelForm):
     body=forms.CharField(

@@ -70,7 +70,6 @@ ul {
   padding: 5%;
 }
 .post-form {
-  border: 1px solid lightslategray;
   border-radius: 7px;
   padding: 20px;
 }
@@ -173,11 +172,9 @@ ul {
 .text-lg {
   font-size: 2.5em;
 }
-/* #form{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
+.icon{
+  font-size:20px;
+}
 .form {
   width: 40%;
   margin: auto;
@@ -229,11 +226,15 @@ ul {
     display: block;
     font-size: 1.5em;
   }
+  #main{
+    padding: 2%;
+  }
   .text-center{
     padding: 20px;
   }
   .post {
     display: flex;
+    width: 100%;
     padding: 0;
     border: none;
     border-bottom: 1px solid lightgray;
@@ -243,6 +244,9 @@ ul {
   }
   .post-options{
     font-size: 15px;
+  }
+  .icon{
+    font-size: 18px;
   }
   .profile{
     padding-top: 10px;
@@ -262,11 +266,11 @@ ul {
     margin-left: 20px;
   }
   .comments {
-    padding: 0px;
+    padding: 12px;
   }
   .comment {
     width: 100%;
-    padding: 0;
+    padding: 12px;
     font-size: 15px;
     background: none;
     border: none;
@@ -277,9 +281,13 @@ ul {
       padding: 10px;
       border: none;
   }
+ 
   .form input{
     width: 95%;
     margin-right: 10px;
+  }
+  .form-control{
+    width: 80%;
   }
  
   .profile-form{
@@ -287,5 +295,9 @@ ul {
   }
   .mybtn{
     padding: 10px;
+  }
+  .pagination{
+    text-align: center;
+    padding: 20px;
   }
 }

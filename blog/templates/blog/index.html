@@ -25,13 +25,13 @@
         </div>
         <br>
         <div class="post-options">
-            <a href="" class="pr-text">Like</a>
-            <a href="/details/{{post.slug}}/" class="pr-text">{{post.post.count}}.<i class="fa fa-comment    "></i>{{post.post.count|pluralize}}</a>
-            <a href="" class="pr-text">Share</a>
-            {% if post.author == request.user%}
-                <a href="/edit_post/{{post.slug}}/" class="pr-text">Edit</a>
-                <a href="/delete_post/{{post.pk}}/" class="pr-text">Delete</a>
-            {% endif%}
+          <a href="" class="light-g-text icon"><i class="fa fa-thumbs-up "></i></a>
+          <a href="/details/{{post.slug}}/" class="light-g-text icon"><i class="fa fa-comment "></i>{{post.post.count}}</a>
+          <a href="" class="light-g-text icon"><i class="fa fa-share "></i></a>
+          {% if post.author == request.user%}
+              <a href="/edit_post/{{post.slug}}/" class="light-g-text icon"><i class="fas fa-feather    "></i></a>
+              <a href="/delete_post/{{post.pk}}/" class="light-g-text icon"><i class="fas fa-trash "></i></a>
+          {% endif%}
         </div>
       </div>
     </div>

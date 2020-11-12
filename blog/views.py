@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.http import JsonResponse
 from .models import Post, Comment, Profile, Follower
-from .forms import PostCreationForm, CommentForm, ProfileCreationForm
+from .forms import PostCreationForm, CommentForm, ProfileCreationForm,PostEditForm
 from django.views.generic import UpdateView, DeleteView, ListView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth import login, authenticate
@@ -337,11 +337,12 @@ VIEW FOR DELETION OF POSTS
 
 class PostEditView(UpdateView, SuccessMessageMixin):
     model = Post
-    fields = ['body']
     template_name = 'blog/editpost.html'
     success_url = "/posts/"
     success_message = "Post has been Updated successfully"
     context_object_name = 'post/editpost.html'
+    form_class=PostEditForm
+    
 
 
 """

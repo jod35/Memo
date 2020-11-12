@@ -6,7 +6,7 @@
   </div>
   <div class="post-details">
     <div class="post-top">
-      <a href="" class="pr-text"><h1>{{post.author.username}}</h1></a>
+      <a href="/profile/{{post.author.username}}/" class="pr-text"><h1>{{post.author.username}}</h1></a>
       <small class="light-g-text" style="margin-left:20px">
         <p>{{post.publish}}</p>
       </small>
@@ -21,13 +21,13 @@
     </div>
     <br>
     <div class="post-options">
-             <a href="" class="light-g-text"><i class="fa fa-thumbs-up   fa-1.8x "></i></a>
-             <a href="#" id="comment-btn" class="light-g-text"><i class="fa fa-comment fa-1.8x"></i>{{post.post.count}}</a>
-             <a href="" class="light-g-text"><i class="fa fa-share fa-1.8x"></i></a>
-             {% if post.author == request.user%}
-                 <a href="/edit_post/{{post.slug}}/" class="light-g-text"><i class="fa fa-pencil fa-1.8x"></i></a>
-                 <a href="/delete_post/{{post.pk}}/" class="light-g-text"><i class="fa fa-trash fa-1.8x"></i></a>
-             {% endif%}
+      <a href="" class="light-g-text icon"><i class="fas fa-heart    "></i></a>
+      <a href="#" class="light-g-text icon" id="comment-btn"><i class="fa fa-comment "></i>{{post.post.count}}</a>
+      <a href="" class="light-g-text icon"><i class="fa fa-share "></i></a>
+      {% if post.author == request.user%}
+          <a href="/edit_post/{{post.slug}}/" class="light-g-text icon"><i class="fas fa-feather    "></i></a>
+          <a href="/delete_post/{{post.pk}}/" class="light-g-text icon"><i class="fas fa-trash "></i></a>
+      {% endif%}
          </div>
   </div>
 </div>
@@ -74,10 +74,10 @@
         </div>
         <div class="comment-options">
           {% if comment.author == request.user %}
-          <a class="light-g-text" href="/delete_comment/{{comment.id}}/{{post.slug}}/"><i class="fa fa-trash fa-1.8x"></i></a>
+          <a class="light-g-text icon" href="/delete_comment/{{comment.id}}/{{post.slug}}/"><i class="fa fa-trash"></i></a>
           {% endif %}
-          <a class="light-g-text" href=""><i class="fa fa-thumbs-up   fa-1.8x "></i></a>
-          <a class="light-g-text" href=""><i class="fa fa-reply fa-1.8x"></i></a>
+          <a class="light-g-text icon" href=""><i class="fas fa-heart    "></i></a>
+          <a class="light-g-text icon" href=""><i class="fa fa-reply"></i></a>
         </div>
       </div>
     </div>
